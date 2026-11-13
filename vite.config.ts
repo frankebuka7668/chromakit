@@ -8,7 +8,8 @@ export default defineConfig(() => {
     // Publish only the five standalone showcase pages, not the rest of public/.
     publicDir: 'public/pages',
     preview: {
-      allowedHosts: ['4173-ils7lq08jkknedvrs06v9.e2b.app'],
+      // Arena assigns a new preview hostname per session; allow only its domain suffix.
+      allowedHosts: ['.e2b.app'],
     },
     plugins: [react(), tailwindcss()],
     resolve: {
