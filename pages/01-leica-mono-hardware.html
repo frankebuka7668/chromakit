@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page 01 — Leica & Mono Optical Hardware Flagship (Leica Ice Blue, Ink & Vermilion)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* 60-30-10 Functional Color Tokens (Leica Ice Blue, Ink & Vermilion by @bymarcoperez) */
+      --bg-60: #D5E5F0;      /* 60% Background: Ice Blue */
+      --surface-30: #081D2B; /* 30% Surface/Text: Midnight Ink */
+      --action-10: #EE4222;   /* 10% Action: Vermilion */
+      --action-text: #F4F1EA;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-60);
+      color: var(--surface-30);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    h1, h2, h3, .brand {
+      font-family: "Bricolage Grotesque", sans-serif;
+      text-wrap: balance;
+    }
+    code, .mono {
+      font-family: "JetBrains Mono", monospace;
+      font-variant-numeric: tabular-nums;
+    }
+    /* Strict 3-Zone Top Bar Contract */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 1.25rem 3rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--surface-30) 18%, transparent);
+    }
+    nav { display: flex; gap: 2rem; font-size: 0.875rem; font-weight: 500; }
+    nav a { color: inherit; text-decoration: none; white-space: nowrap; }
+    .btn-primary {
+      background-color: var(--action-10);
+      color: var(--action-text);
+      padding: 0.65rem 1.25rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 0.8125rem;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--surface-30);
+      padding: 0.65rem 1.25rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      font-size: 0.8125rem;
+      border: 1px solid color-mix(in srgb, var(--surface-30) 30%, transparent);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    main { max-width: 1280px; margin: 0 auto; padding: 4rem 3rem; }
+    .hero-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 3rem; align-items: stretch; }
+    /* Rule 14: r_inner = r_outer (16px) - padding (8px) = 8px */
+    .card-outer {
+      border-radius: 16px;
+      padding: 8px;
+      border: 1px solid color-mix(in srgb, var(--surface-30) 22%, transparent);
+    }
+    .card-inner {
+      border-radius: 8px;
+      padding: 2rem;
+      height: 100%;
+      background-color: var(--surface-30);
+      color: var(--bg-60);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="brand" style="font-size: 1.25rem; font-weight: 700;">LEICA</span>
+    <nav>
+      <a href="#overview">Overview</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#specifications">Specifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="btn-primary">Explore M-System</button>
+  </header>
+  <main>
+    <div class="hero-grid">
+      <div>
+        <p class="mono" style="font-size: 0.75rem; opacity: 0.75;">
+          PAGE 01 · 60% Ice Blue (#D5E5F0) · 30% Midnight Ink (#081D2B) · 10% Vermilion (#EE4222)
+        </p>
+        <h1 style="font-size: clamp(2.5rem, 4.5vw, 4rem); line-height: 1.06; margin-top: 0.75rem;">
+          Look closer.
+        </h1>
+        <p style="margin-top: 1.25rem; font-size: 1.05rem; opacity: 0.85; max-width: 54ch;">
+          Precision optical engineering and full-frame rangefinder architecture built for decisive moments.
+        </p>
+        <div style="margin-top: 2rem; display: flex; gap: 0.75rem;">
+          <!-- Spend the action colour once -->
+          <button class="btn-primary">Explore M-System</button>
+          <button class="btn-secondary">Technical specs</button>
+        </div>
+      </div>
+      <div class="card-outer">
+        <div class="card-inner">
+          <div class="mono" style="font-size: 0.75rem;">M11-P RANGEFINDER · 60MP BSI CMOS</div>
+     <h2 style="margin-top: 1rem; font-size: 1.75rem;">Summilux-M 35mm f/1.4 ASPH</h2>
+     <p style="margin-top: 0.75rem; font-size: 0.875rem; opacity: 0.85;">"Ice blue and midnight ink: clean, but a little cold. Add vermilion—now it feels expensive."</p>
+     <div class="mono" style="margin-top: 2rem; font-size: 1.25rem; font-weight: 700;">FREE · MIT OPEN SOURCE</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

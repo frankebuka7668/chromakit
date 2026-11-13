@@ -1,0 +1,6 @@
+{
+  "name": "ChromaKit — Color Systems & Anti-Slop Repo Studio",
+  "description": "Curated color combinations, 60-30-10 role architecture, UI unslop rules, and background textures compiled into GitHub repository files and AI coding agent skills.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

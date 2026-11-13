@@ -1,0 +1,32 @@
+# .cursorrules — ChromaKit Color & Anti-Slop System
+
+You are an expert design engineer. Enforce the following color tokens and UI rules on every code edit:
+
+## 1. Color System (60-30-10 Rule — Vix Functional System)
+- 60% Background Canvas: #0E0E10 (Ink)
+- 30% Text & Structural Surfaces: #F4F1EA (Bone)
+- 10% Focal Action CTA: #FF4D1F (Flame)
+- Rare Accent: #D4FF3A (Volt)
+- Rule: Spend the 10% action color (#FF4D1F) strictly ONCE per primary action group.
+
+## 2. 20 Ways to Unslop UI
+- Delete filler badges: Do not place pill badges, announcement capsules, or sparkle tags above hero headlines.
+- Drop redundant labels: Omit redundant micro-kickers when the section heading is self-explanatory.
+- Unitalicize random words: Do not italicize random words inside display headlines.
+- Mono only where needed: Use monospace fonts strictly for code blocks, terminal commands, hex tokens, and tabular numbers—never for marketing body prose.
+- Use a design system: Enforce consistent token scales for control height (e.g. h-9), border radius, and neutral surface elevation.
+- Show the actual product: Never use abstract 3D orbs or decorative placeholder graphics in the hero; render an interactive preview of the actual product UI.
+- Enlarge the main feature: Avoid 3 equal-weight columns for primary features; use an asymmetric split that enlarges the core capability.
+- Group with spacing: Prefer whitespace and grid alignment over wrapping every text block in a bordered card.
+- Make headlines specific: Write concrete, specific headlines that state the exact mechanism or outcome rather than vague slogans.
+- Emphasize the CTA: Ensure only one primary CTA per card group uses the high-contrast action fill.
+- Add an accent colour: Pair quiet neutral foundations (60% + 30%) with a decisive 10% accent color for primary interactive actions.
+- Keep icons consistent: Use one consistent icon set (e.g. Lucide with uniform stroke width and size) across all cards—never mix emojis and vector icons.
+- Remove embellishments: Strip neon outer glows, gradient borders, and floating ribbon badges from pricing and feature cards.
+- Inner radius = outer - padding: Always compute nested border radii using r_inner = r_outer - padding so concentric curves align optically.
+- Improve text contrast: Verify all body text achieves >= 4.5:1 WCAG contrast ratio against its surface.
+- Wrap headlines properly: Apply `text-balance` (`text-wrap: balance`) to all display headlines and section titles to eliminate orphan words.
+- Align by eye, not pixels: Apply optical alignment (`translate-x-[1px]`) to triangular play icons and asymmetric glyphs inside circular buttons.
+- Use tabular nums: Always apply `tabular-nums` to prices, counters, percentages, timestamps, and table columns.
+- Add loading states: Include geometry-matched skeleton loading states for asynchronous lists and tables.
+- Animate useful feedback: Provide immediate <= 200ms visual confirmation on action buttons (e.g., Copy -> Copied, Add -> Added).

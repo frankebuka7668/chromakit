@@ -1,0 +1,137 @@
+/* ChromaKit — Tailwind CSS v4 @theme & Custom Properties */
+@import "tailwindcss";
+
+@theme {
+  /* Active 60-30-10 Functional Tokens (Vix Functional System) */
+  --color-canvas: #0E0E10;
+  --color-surface: #F4F1EA;
+  --color-action: #FF4D1F;
+  --color-accent-rare: #D4FF3A;
+
+  /* Complete Extracted Palette Token Library */
+  /* Vix Functional System (vixdesignz) */
+  --color-vix-functional-system-bg: #0E0E10;
+  --color-vix-functional-system-surface: #F4F1EA;
+  --color-vix-functional-system-action: #FF4D1F;
+  --color-vix-functional-system-rare: #D4FF3A;
+
+  /* Cairn Brand System (Cairn) */
+  --color-cairn-story-system-bg: #22252B;
+  --color-cairn-story-system-surface: #F3EFE6;
+  --color-cairn-story-system-action: #FFB020;
+  --color-cairn-story-system-rare: #1F5D50;
+
+  /* Athletic Midnight & Lime (MARK TENNIS CLUB) */
+  --color-mark-tennis-club-bg: #132C48;
+  --color-mark-tennis-club-surface: #F6F4F0;
+  --color-mark-tennis-club-action: #D8FF00;
+
+  /* Kontour Editorial Black & Flame (KONTOUR) */
+  --color-kontour-system-bg: #0B0B0B;
+  --color-kontour-system-surface: #F3F3F2;
+  --color-kontour-system-action: #FF4D00;
+
+  /* Guardbase Paper & Cornflower (Guardbase) */
+  --color-guardbase-security-bg: #FFFFFF;
+  --color-guardbase-security-surface: #0B0B0B;
+  --color-guardbase-security-action: #5482FF;
+
+  /* Olipop Lemon, Cobalt & Hot Pink (OLIPOP) */
+  --color-olipop-sip-happy-bg: #F4E452;
+  --color-olipop-sip-happy-surface: #0D32B8;
+  --color-olipop-sip-happy-action: #FF318C;
+
+  /* Leica Ice Blue, Ink & Vermilion (LEICA) */
+  --color-leica-look-closer-bg: #D5E5F0;
+  --color-leica-look-closer-surface: #081D2B;
+  --color-leica-look-closer-action: #EE4222;
+
+  /* Afterhour Forest, Ivory & Coral (afterhour) */
+  --color-afterhour-forest-coral-bg: #073B2B;
+  --color-afterhour-forest-coral-surface: #F7F6EE;
+  --color-afterhour-forest-coral-action: #FA7C67;
+
+  /* Good Company Sky, Cloud & Vermilion (GOOD COMPANY) */
+  --color-good-company-sky-vermilion-bg: #0D84FF;
+  --color-good-company-sky-vermilion-surface: #F2F6FA;
+  --color-good-company-sky-vermilion-action: #E73E18;
+
+  /* Offscript Red Orange, Snow & Acid Yellow (OFFSCRIPT) */
+  --color-offscript-red-acid-bg: #F72D07;
+  --color-offscript-red-acid-surface: #FAF6F6;
+  --color-offscript-red-acid-action: #D4FF1E;
+
+  /* Nightline Sapphire, Cyan & Neon Jade (nightline) */
+  --color-nightline-sapphire-jade-bg: #06299C;
+  --color-nightline-sapphire-jade-surface: #00C0FA;
+  --color-nightline-sapphire-jade-action: #5BFF62;
+
+  /* Zest Mandarin, Forest & Crest Yellow (ZEST) */
+  --color-zest-mandarin-forest-bg: #F25912;
+  --color-zest-mandarin-forest-surface: #0D542E;
+  --color-zest-mandarin-forest-action: #F2DA3A;
+
+  /* Forma Onyx, Electric Indigo & Mint (forma.) */
+  --color-forma-onyx-indigo-mint-bg: #0D0B12;
+  --color-forma-onyx-indigo-mint-surface: #6B17FA;
+  --color-forma-onyx-indigo-mint-action: #6BFCC4;
+
+  /* Prism Teal, Navy & Crimson Pink (prism) */
+  --color-prism-teal-navy-crimson-bg: #D8ECF5;
+  --color-prism-teal-navy-crimson-surface: #071D42;
+  --color-prism-teal-navy-crimson-action: #F24182;
+
+  /* Bonbon Sugar Violet, Cream & Cherry (bonbon) */
+  --color-bonbon-violet-cream-cherry-bg: #8752DE;
+  --color-bonbon-violet-cream-cherry-surface: #FAE8CA;
+  --color-bonbon-violet-cream-cherry-action: #DB1222;
+
+  /* Solar Pool Blue, Dark Cocoa & Solar Yellow (solar) */
+  --color-solar-pool-cocoa-yellow-bg: #B8E1EB;
+  --color-solar-pool-cocoa-yellow-surface: #3D1D14;
+  --color-solar-pool-cocoa-yellow-action: #F2C92E;
+
+  /* Mono Porcelain, Carbon & Ultramarine (mono) */
+  --color-mono-porcelain-carbon-ultramarine-bg: #F4F4F2;
+  --color-mono-porcelain-carbon-ultramarine-surface: #171B1E;
+  --color-mono-porcelain-carbon-ultramarine-action: #1C30F2;
+
+  /* Motto Almond Cream, Petrol Teal & Electric Violet (MOTTO) */
+  --color-motto-almond-petrol-violet-bg: #F3ECC8;
+  --color-motto-almond-petrol-violet-surface: #0D5258;
+  --color-motto-almond-petrol-violet-action: #A862F7;
+
+  /* Dotto Apricot, Mulberry & Pool Mint (DOTTO) */
+  --color-dotto-apricot-mulberry-mint-bg: #F7AC6F;
+  --color-dotto-apricot-mulberry-mint-surface: #4F1233;
+  --color-dotto-apricot-mulberry-mint-action: #5FF5C4;
+
+  /* Arca Salt Grey, Deep Olive & Hibiscus Pink (arca.) */
+  --color-arca-salt-olive-hibiscus-bg: #E6E8E8;
+  --color-arca-salt-olive-hibiscus-surface: #213321;
+  --color-arca-salt-olive-hibiscus-action: #F2407A;
+
+  /* Veyra Tech Brand System (veyra) */
+  --color-veyra-tech-brand-bg: #111A3A;
+  --color-veyra-tech-brand-surface: #DCE4EC;
+  --color-veyra-tech-brand-action: #D4FF00;
+  --color-veyra-tech-brand-rare: #1F51FF;
+
+  /* Little Crumb Cafe & Bakery (little crumb) */
+  --color-little-crumb-cafe-bg: #F3E5AB;
+  --color-little-crumb-cafe-surface: #4A2511;
+  --color-little-crumb-cafe-action: #E8A598;
+  --color-little-crumb-cafe-rare: #706E2E;
+
+  /* Atelier Corporate & Law Firm (VANCE & STERLING) */
+  --color-atelier-law-firm-bg: #0D262A;
+  --color-atelier-law-firm-surface: #DCD9D0;
+  --color-atelier-law-firm-action: #C6631B;
+  --color-atelier-law-firm-rare: #6A83A4;
+
+  /* Oriel Botanical Skincare (oriel) */
+  --color-oriel-skincare-bg: #F9F3E3;
+  --color-oriel-skincare-surface: #B36A46;
+  --color-oriel-skincare-action: #CEA243;
+  --color-oriel-skincare-rare: #DFBA94;
+}
