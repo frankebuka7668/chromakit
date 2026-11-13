@@ -3,122 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page 04 — Olipop & Zest Botanical Beverage Storefront (Olipop Lemon, Cobalt & Hot Pink)</title>
+  <meta name="theme-color" content="#F4E452" />
+  <meta name="description" content="Explore the OLIPOP Botanical soda concept: a polished, interactive product showcase built around a considered 60–30–10 color palette." />
+  <title>OLIPOP Botanical soda — ChromaKit Showcase 04</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      /* 60-30-10 Functional Color Tokens (Olipop Lemon, Cobalt & Hot Pink by @bymarcoperez) */
-      --bg-60: #F4E452;      /* 60% Background: Lemon Yellow */
-      --surface-30: #0D32B8; /* 30% Surface/Text: Cobalt Blue */
-      --action-10: #FF318C;   /* 10% Action: Hot Pink */
-      --action-text: #F4F1EA;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: var(--bg-60);
-      color: var(--surface-30);
-      font-family: "Plus Jakarta Sans", sans-serif;
-      line-height: 1.5;
-      min-height: 100vh;
-    }
-    h1, h2, h3, .brand {
-      font-family: "Bricolage Grotesque", sans-serif;
-      text-wrap: balance;
-    }
-    code, .mono {
-      font-family: "JetBrains Mono", monospace;
-      font-variant-numeric: tabular-nums;
-    }
-    /* Strict 3-Zone Top Bar Contract */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      padding: 1.25rem 3rem;
-      border-bottom: 1px solid color-mix(in srgb, var(--surface-30) 18%, transparent);
-    }
-    nav { display: flex; gap: 2rem; font-size: 0.875rem; font-weight: 500; }
-    nav a { color: inherit; text-decoration: none; white-space: nowrap; }
-    .btn-primary {
-      background-color: var(--action-10);
-      color: var(--action-text);
-      padding: 0.65rem 1.25rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      font-size: 0.8125rem;
-      border: none;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .btn-secondary {
-      background: transparent;
-      color: var(--surface-30);
-      padding: 0.65rem 1.25rem;
-      border-radius: 0.5rem;
-      font-weight: 500;
-      font-size: 0.8125rem;
-      border: 1px solid color-mix(in srgb, var(--surface-30) 30%, transparent);
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    main { max-width: 1280px; margin: 0 auto; padding: 4rem 3rem; }
-    .hero-grid { display: grid; grid-template-columns: 7fr 5fr; gap: 3rem; align-items: stretch; }
-    /* Rule 14: r_inner = r_outer (16px) - padding (8px) = 8px */
-    .card-outer {
-      border-radius: 16px;
-      padding: 8px;
-      border: 1px solid color-mix(in srgb, var(--surface-30) 22%, transparent);
-    }
-    .card-inner {
-      border-radius: 8px;
-      padding: 2rem;
-      height: 100%;
-      background-color: var(--surface-30);
-      color: var(--bg-60);
-    }
+    :root{--bg:#D5E5F0;--ink:#081D2B;--accent:#EE4222;--accent-ink:#0B0B0B;--muted:color-mix(in srgb,var(--ink) 67%,var(--bg));--line:color-mix(in srgb,var(--ink) 18%,transparent);--card:var(--ink);--card-ink:var(--bg);--font:"Plus Jakarta Sans",sans-serif;--display:"Bricolage Grotesque",sans-serif;--mono:"JetBrains Mono",monospace}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.65 var(--font);-webkit-font-smoothing:antialiased}a{color:inherit}h1,h2,h3,p{margin-top:0}h1,h2,h3,.brand{font-family:var(--display);text-wrap:balance}h1{font-size:clamp(3.1rem,7vw,6.5rem);line-height:.96;letter-spacing:-.075em;margin:22px 0}h2{font-size:clamp(2.1rem,4.7vw,4rem);line-height:1.01;letter-spacing:-.065em;margin:0 0 18px}h3{font-size:1.35rem;line-height:1.12;letter-spacing:-.035em;margin:0 0 10px}.mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.045em}.wrap{width:min(1200px,calc(100% - 52px));margin:auto}.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px max(26px,calc((100vw - 1200px)/2));background:color-mix(in srgb,var(--bg) 91%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.brand{display:inline-flex;align-items:center;gap:10px;font-size:1rem;font-weight:700;letter-spacing:-.04em;text-decoration:none}.brand-mark{width:31px;height:31px;display:grid;place-items:center;border-radius:9px;background:var(--ink);color:var(--bg);font:700 .84rem var(--mono)}.nav{display:flex;align-items:center;gap:clamp(14px,2.5vw,31px);font-size:.8rem;font-weight:600}.nav a{text-decoration:none;opacity:.77;transition:opacity .2s}.nav a:hover,.nav a:focus-visible{opacity:1}.actions{display:flex;align-items:center;gap:11px;flex-wrap:wrap}.btn{display:inline-flex;min-height:46px;align-items:center;justify-content:center;gap:12px;padding:0 18px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:.8rem;font-weight:700;transition:transform .2s,box-shadow .2s,background .2s}.btn:hover{transform:translateY(-2px);box-shadow:0 9px 24px color-mix(in srgb,var(--ink) 15%,transparent)}.btn:focus-visible,.nav a:focus-visible,.brand:focus-visible{outline:3px solid var(--accent);outline-offset:4px}.btn-primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}.btn-secondary{background:transparent;color:var(--ink)}.btn-arrow{font-size:1rem}.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);align-items:center;gap:clamp(32px,7vw,96px);padding:clamp(58px,9vw,118px) 0 70px;min-height:650px}.eyebrow{display:inline-flex;align-items:center;gap:10px;font:600 .68rem var(--mono);letter-spacing:.12em;text-transform:uppercase}.eyebrow:before{content:"";width:25px;height:2px;background:var(--accent)}.hero-copy{max-width:650px}.hero-copy>p:not(.eyebrow){max-width:53ch;color:var(--muted);font-size:clamp(1rem,1.3vw,1.13rem);line-height:1.8}.hero-copy .actions{margin-top:28px}.hero-visual{position:relative;display:grid;min-height:430px;place-items:center;overflow:hidden;border:1px solid color-mix(in srgb,var(--ink) 12%,transparent);border-radius:30px;background:var(--card);color:var(--card-ink);box-shadow:0 28px 72px color-mix(in srgb,var(--ink) 17%,transparent)}.hero-visual:before,.hero-visual:after{position:absolute;content:"";pointer-events:none}.hero-visual:before{width:380px;height:380px;right:-130px;top:-160px;border:1px solid color-mix(in srgb,var(--accent) 42%,transparent);border-radius:50%;box-shadow:0 0 0 40px color-mix(in srgb,var(--accent) 7%,transparent),0 0 0 80px color-mix(in srgb,var(--accent) 5%,transparent)}.hero-visual:after{left:0;right:0;bottom:0;height:36%;background:linear-gradient(0deg,color-mix(in srgb,var(--ink) 46%,transparent),transparent)}.visual-meta{position:absolute;z-index:2;left:26px;right:26px;top:23px;display:flex;justify-content:space-between;gap:12px;color:color-mix(in srgb,var(--card-ink) 72%,transparent);font:600 .62rem var(--mono);letter-spacing:.08em}.visual-caption{position:absolute;z-index:3;left:28px;right:24px;bottom:24px;display:flex;align-items:end;justify-content:space-between;gap:15px}.visual-caption strong{display:block;font:600 clamp(1.45rem,3vw,2rem)/1.02 var(--display);letter-spacing:-.055em;white-space:pre-line}.visual-caption small{font:600 .59rem var(--mono);letter-spacing:.06em;text-align:right;max-width:165px}.palette-stamp{position:absolute;z-index:3;top:64px;right:24px;width:86px;height:86px;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--card-ink) 35%,transparent);border-radius:50%;color:var(--card-ink);font:600 .58rem/1.45 var(--mono);text-align:center;transform:rotate(10deg)}
+    /* Each visual is composed from CSS so the standalone pages have no broken image dependency. */
+    .camera{position:relative;width:min(72%,370px);height:200px;border:2px solid color-mix(in srgb,var(--card-ink) 27%,transparent);border-radius:27px;background:linear-gradient(145deg,#173a4d,#071722 73%);box-shadow:0 34px 54px #0008,inset 0 2px #ffffff25;transform:rotate(-8deg)}.camera:before{content:"";position:absolute;left:35%;top:-24px;width:30%;height:26px;border-radius:8px 8px 0 0;background:linear-gradient(90deg,#142b39,#244b5c,#0b202c)}.camera:after{content:"M";position:absolute;left:18px;top:18px;color:var(--accent);font:700 17px var(--display)}.lens{position:absolute;left:50%;top:50%;width:142px;height:142px;transform:translate(-50%,-50%);border:8px solid #1c3440;border-radius:50%;background:radial-gradient(circle,#07111a 0 19%,#183b4b 20% 27%,#06111b 28% 41%,#254859 42% 48%,#091721 49% 68%,#263e48 69%);box-shadow:0 0 0 2px #72818a,inset 0 0 15px #000}.lens:after{content:"";position:absolute;inset:38%;border-radius:50%;background:#a9d8ee55;filter:blur(4px)}.camera-dot{position:absolute;right:20px;top:20px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
+    .terminal{position:relative;width:80%;max-width:410px;padding:25px;border:1px solid #ffffff28;border-radius:17px;background:#111821;box-shadow:0 28px 60px #0009;transform:rotate(-3deg)}.terminal-top{display:flex;align-items:center;gap:6px;padding-bottom:17px;border-bottom:1px solid #ffffff20}.terminal-top i{width:8px;height:8px;border-radius:50%;background:#f76b5e}.terminal-top i:nth-child(2){background:#f6c65b}.terminal-top i:nth-child(3){background:#64c98a}.terminal-title{margin-left:auto;color:#aab6c2;font:600 .59rem var(--mono)}.terminal-line{margin-top:18px;color:#c4d0dd;font:500 .72rem/1.8 var(--mono)}.terminal-line b{color:var(--accent);font-weight:600}.terminal-line em{color:#8ee0b3;font-style:normal}.terminal-result{margin-top:17px;padding:12px;border-radius:8px;background:#5482ff1c;color:#dbe5ff;font:500 .63rem/1.6 var(--mono)}
+    .bike-art{position:relative;width:min(82%,430px);height:242px}.wheel{position:absolute;bottom:0;width:128px;height:128px;border:5px solid #e2dabb;border-radius:50%;box-shadow:inset 0 0 0 2px #64827d}.wheel.one{left:16px}.wheel.two{right:16px}.bike-frame{position:absolute;inset:0;width:100%;height:100%;overflow:visible}.bike-frame path{fill:none;stroke:var(--accent);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}.bike-frame .dark{stroke:#c2d2c2;stroke-width:4}.bike-frame circle{fill:#172d2c;stroke:#dbe4d7;stroke-width:4}.bike-glow{position:absolute;left:50%;bottom:-30px;width:320px;height:90px;transform:translateX(-50%);border-radius:50%;background:var(--accent);opacity:.17;filter:blur(32px)}
+    .can{position:relative;width:146px;height:278px;border:2px solid #ffffff9c;border-radius:27px 27px 34px 34px;background:linear-gradient(90deg,#d2bf2e 0,#f7e958 20%,#fff27a 49%,#f4e452 72%,#c7b529 100%);box-shadow:0 27px 48px #0006, inset 0 8px 0 #fff6;transform:rotate(8deg)}.can:before{content:"";position:absolute;left:8px;right:8px;top:-6px;height:13px;border:2px solid #c6b842;border-radius:50%;background:linear-gradient(#f8f8df,#85856f)}.can:after{content:"OLIPOP";position:absolute;top:93px;left:-13px;right:-13px;padding:8px 2px;color:#fff;font:700 1rem var(--display);letter-spacing:.11em;text-align:center;background:var(--ink);border:3px solid var(--accent);transform:rotate(-90deg);box-shadow:0 4px 14px #0003}.can-mark{position:absolute;z-index:1;top:37px;left:0;right:0;color:var(--ink);font:700 .58rem var(--mono);text-align:center}.can-base{position:absolute;bottom:23px;left:0;right:0;color:var(--ink);font:700 .55rem var(--mono);text-align:center}
+    .lamp{position:relative;width:270px;height:300px}.lamp-stem{position:absolute;top:43px;left:132px;width:6px;height:192px;border-radius:5px;background:linear-gradient(90deg,#aaa,#f7f5eb 48%,#777)}.lamp-arm{position:absolute;top:38px;left:75px;width:119px;height:7px;border-radius:5px;background:linear-gradient(#aaa,#f3f1e8,#777);transform:rotate(-12deg);transform-origin:right}.lamp-shade{position:absolute;top:18px;left:37px;width:86px;height:52px;border-radius:48px 48px 10px 10px;background:linear-gradient(145deg,#ff793b,var(--accent) 56%,#9b3000);box-shadow:inset 0 3px #ffffff55,0 14px 28px #ff4d003b;transform:rotate(-12deg)}.lamp-shade:after{content:"";position:absolute;left:10px;right:10px;bottom:-5px;height:8px;border-radius:50%;background:#fff1d3}.lamp-base{position:absolute;bottom:28px;left:72px;width:126px;height:15px;border-radius:50%;background:linear-gradient(#e6e4dc,#74736d);box-shadow:0 15px 20px #0008}.lamp-beam{position:absolute;bottom:46px;left:49px;width:170px;height:150px;background:linear-gradient(0deg,#ff4d003b,transparent);clip-path:polygon(43% 0,58% 0,100% 100%,0 100%)}
+    .palette-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:17px;background:color-mix(in srgb,var(--ink) 7%,transparent);border:1px solid var(--line);border-radius:17px}.swatch{display:flex;align-items:center;gap:12px;min-width:0;padding:10px 13px;border-radius:11px;background:color-mix(in srgb,var(--bg) 70%,transparent)}.swatch-chip{width:36px;height:36px;flex:0 0 36px;border-radius:10px;border:1px solid color-mix(in srgb,var(--ink) 15%,transparent)}.swatch-copy{min-width:0}.swatch-copy strong,.swatch-copy small{display:block}.swatch-copy strong{font-size:.76rem}.swatch-copy small{color:var(--muted);font:500 .59rem var(--mono);margin-top:2px}.section{padding:clamp(66px,9vw,112px) 0}.section-head{display:grid;grid-template-columns:.75fr 1.25fr;gap:36px;align-items:end;margin-bottom:34px}.section-head p{max-width:54ch;margin:0;color:var(--muted)}.story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.story-card{min-height:200px;padding:25px;border:1px solid var(--line);border-radius:18px;background:color-mix(in srgb,var(--ink) 5%,transparent)}.story-card .mono{display:block;color:var(--ink);margin-bottom:37px}.story-card p{margin:0;color:var(--muted);font-size:.89rem}.spec-panel{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center;padding:clamp(28px,5vw,58px);border-radius:25px;background:var(--card);color:var(--card-ink)}.spec-panel .eyebrow{color:color-mix(in srgb,var(--card-ink) 70%,transparent)}.spec-panel p{max-width:54ch;color:color-mix(in srgb,var(--card-ink) 72%,transparent)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.stat{padding:20px 15px;border:1px solid color-mix(in srgb,var(--card-ink) 22%,transparent);border-radius:14px}.stat strong{display:block;color:var(--accent);font:700 clamp(1rem,2vw,1.45rem) var(--mono);letter-spacing:-.06em}.stat span{display:block;margin-top:9px;font-size:.7rem;line-height:1.4;color:color-mix(in srgb,var(--card-ink) 75%,transparent)}.next-step{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:clamp(28px,5vw,54px);border:1px solid var(--line);border-radius:24px;background:color-mix(in srgb,var(--accent) 10%,var(--bg))}.next-step p{max-width:55ch;margin:0;color:var(--muted)}.footer{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:25px 0 32px;border-top:1px solid var(--line);color:var(--muted);font-size:.75rem}.footer a{text-decoration:none;font-weight:700;color:var(--ink)}
+    @media(max-width:920px){.topbar{flex-wrap:wrap}.nav{order:3;flex:1 0 100%;justify-content:center;padding:4px 0}.hero{grid-template-columns:1fr 1fr;gap:30px;min-height:560px}.hero-visual{min-height:370px}.visual-meta{left:18px;right:18px}.visual-caption{left:20px;bottom:20px}.section-head{grid-template-columns:1fr;gap:12px}}
+    @media(max-width:650px){.wrap{width:calc(100% - 34px)}.topbar{padding:12px 17px;gap:12px}.topbar>.btn{min-height:40px;padding:0 13px;font-size:.7rem}.nav{justify-content:flex-start;overflow-x:auto;gap:22px;font-size:.73rem;white-space:nowrap}.hero{grid-template-columns:1fr;padding:55px 0 44px;min-height:0;gap:35px}.hero-visual{min-height:350px}.hero-copy h1{font-size:clamp(3.15rem,15vw,5rem)}.palette-row{gap:7px;padding:9px}.swatch{display:block;padding:8px}.swatch-chip{width:100%;height:34px;margin-bottom:7px}.swatch-copy strong{font-size:.64rem;line-height:1.2}.swatch-copy small{font-size:.53rem}.story-grid{grid-template-columns:1fr}.story-card{min-height:0;padding:21px}.story-card .mono{margin-bottom:20px}.spec-panel{grid-template-columns:1fr;gap:25px;padding:25px}.stats{gap:8px}.stat{padding:14px 10px}.stat strong{font-size:.91rem}.stat span{font-size:.62rem}.next-step{display:block}.next-step .btn{margin-top:20px}.footer{align-items:flex-start;flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important}}
   </style>
+  <style>:root{--bg:#F4E452;--ink:#0D32B8;--accent:#FF318C;--accent-ink:#0B0B0B;--card:#0D32B8;--card-ink:#F4E452}</style>
 </head>
 <body>
-  <header>
-    <span class="brand" style="font-size: 1.25rem; font-weight: 700;">OLIPOP</span>
-    <nav>
-      <a href="#overview">Overview</a>
-      <a href="#architecture">Architecture</a>
-      <a href="#specifications">Specifications</a>
-      <a href="#contact">Contact</a>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="ChromaKit collection"><span class="brand-mark" aria-hidden="true">C</span><span>OLIPOP</span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#overview">Overview</a><a href="#story">The story</a><a href="#specifications">Details</a><a href="#contact">Next step</a>
     </nav>
-    <button class="btn-primary">Find your flavor</button>
+    <a class="btn btn-primary" href="#specifications">Find your flavor <span class="btn-arrow" aria-hidden="true">↗</span></a>
   </header>
   <main>
-    <div class="hero-grid">
-      <div>
-        <p class="mono" style="font-size: 0.75rem; opacity: 0.75;">
-          PAGE 04 · 60% Lemon Yellow (#F4E452) · 30% Cobalt Blue (#0D32B8) · 10% Hot Pink (#FF318C)
-        </p>
-        <h1 style="font-size: clamp(2.5rem, 4.5vw, 4rem); line-height: 1.06; margin-top: 0.75rem;">
-          SIP HAPPY.
-        </h1>
-        <p style="margin-top: 1.25rem; font-size: 1.05rem; opacity: 0.85; max-width: 54ch;">
-          Less ordinary. More oh-so-good. Plant-powered prebiotic soda crafted with botanicals and real fruit juice.
-        </p>
-        <div style="margin-top: 2rem; display: flex; gap: 0.75rem;">
-          <!-- Spend the action colour once -->
-          <button class="btn-primary">Find your flavor</button>
-          <button class="btn-secondary">Read ingredients</button>
-        </div>
+    <section class="hero wrap" id="overview" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Functional beverages <span aria-hidden="true">·</span> ChromaKit 04</p>
+        <h1 id="page-title">Good for your gut. Impossible to ignore.</h1>
+        <p>A bright, botanical take on soda with real fruit flavor, prebiotic fiber, and a little more fun in every can.</p>
+        <div class="actions"><a class="btn btn-primary" href="#story">Find your flavor <span class="btn-arrow" aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="#specifications">See what is inside</a></div>
+        <p class="mono" style="margin:27px 0 0;color:var(--muted)">A COLOR SYSTEM IN USE — 60 / 30 / 10</p>
       </div>
-      <div class="card-outer">
-        <div class="card-inner">
-          <div class="mono" style="font-size: 0.75rem;">9G PREBIOTIC FIBER · 2G SUGAR</div>
-     <h2 style="margin-top: 1rem; font-size: 1.75rem;">12-Can Custom Variety Pack</h2>
-     <p style="margin-top: 0.75rem; font-size: 0.875rem; opacity: 0.85;">"Lemon yellow and cobalt blue looks fun. Add a little hot pink—now the product jumps off the page."</p>
-     <div class="mono" style="margin-top: 2rem; font-size: 1.25rem; font-weight: 700;">FREE · MIT OPEN SOURCE</div>
-        </div>
+      <div class="hero-visual" aria-label="Illustrated Botanical soda product concept">
+        <div class="visual-meta"><span>VARIETY PACK · 12 CANS</span><span>FIG. 04</span></div>
+        <div class="palette-stamp" aria-hidden="true">COLOR<br/>IN<br/>CONTEXT</div>
+        <div class="can" aria-hidden="true"><span class="can-mark">BOTANICAL SODA</span><span class="can-base">PREBIOTIC · FRUIT + FIZZ</span></div>
+        <div class="visual-caption"><strong>A little fizz.
+A lot of feel-good.</strong><small>9 G PREBIOTIC FIBER · 2 G SUGAR</small></div>
       </div>
-    </div>
+    </section>
+    <section class="wrap" aria-label="Featured color palette">
+      <div class="palette-row">          <div class="swatch"><span class="swatch-chip" style="background:#F4E452" aria-hidden="true"></span><span class="swatch-copy"><strong>Lemon Yellow</strong><small>#F4E452</small></span></div>
+          <div class="swatch"><span class="swatch-chip" style="background:#0D32B8" aria-hidden="true"></span><span class="swatch-copy"><strong>Cobalt Blue</strong><small>#0D32B8</small></span></div>
+          <div class="swatch"><span class="swatch-chip" style="background:#FF318C" aria-hidden="true"></span><span class="swatch-copy"><strong>Hot Pink</strong><small>#FF318C</small></span></div></div>
+    </section>
+    <section class="section wrap" id="story" aria-labelledby="story-title">
+      <div class="section-head"><p class="eyebrow">The thinking</p><div><h2 id="story-title">Soda with a brighter side.</h2><p>Fruit-forward flavor and thoughtfully selected botanicals bring a playful new energy to the everyday soda moment.</p></div></div>
+      <div class="story-grid">        <article class="story-card"><span class="mono">01 / FLAVOR</span><h3>A flavor for every mood</h3><p>From bright citrus to juicy berry, there is a fresh favorite waiting to be found.</p></article>
+        <article class="story-card"><span class="mono">02 / BOTANICALS</span><h3>A little more goodness</h3><p>Prebiotic fiber and plant-powered ingredients make the everyday feel more considered.</p></article>
+        <article class="story-card"><span class="mono">03 / VARIETY</span><h3>Mix up your fridge</h3><p>A custom variety pack makes it easy to try something new and share the good stuff.</p></article></div>
+    </section>
+    <section class="section wrap" id="specifications" aria-labelledby="spec-title">
+      <div class="spec-panel">
+        <div><p class="eyebrow">The details</p><h2 id="spec-title">The feel-good details.</h2><p>A concept storefront with the product story up front and the ingredient details close at hand.</p><a class="btn btn-primary" href="#contact">See what is next <span class="btn-arrow" aria-hidden="true">↗</span></a></div>
+        <div class="stats">          <div class="stat"><strong>9 G</strong><span>Prebiotic fiber</span></div>
+          <div class="stat"><strong>2 G</strong><span>Sugar per can</span></div>
+          <div class="stat"><strong>12 CANS</strong><span>Build a variety pack</span></div></div>
+      </div>
+    </section>
+    <section class="wrap section" id="contact" aria-labelledby="next-title">
+      <div class="next-step"><div><p class="eyebrow">Explore the collection</p><h2 id="next-title">Meet your new fridge favorite.</h2><p>Head back to the collection for more color-led storefront concepts and product experiences.</p></div><a class="btn btn-primary" href="/">Back to all five showcases <span class="btn-arrow" aria-hidden="true">↗</span></a></div>
+    </section>
   </main>
+  <footer class="footer wrap"><span>ChromaKit showcase 04 · OLIPOP Botanical soda</span><a href="/">← Return to the five-showcase collection</a></footer>
 </body>
 </html>

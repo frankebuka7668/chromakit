@@ -2,15 +2,30 @@
 
 > Machine-readable color combinations, 5 production web page templates, 60-30-10 role allocation rules, UI unslop directives, and background recipes built for **human developers** and **AI coding agents** (Claude Code, Cursor, Windsurf, AI Studio).
 
+## Live Showcase
+
+**Production:** [chromakit-showcase.vercel.app](https://chromakit-showcase.vercel.app)
+
+Full-page desktop screenshots (1440 px wide) are checked into [`screenshots/`](screenshots/):
+
+- [Showcase gallery](screenshots/gallery.png)
+- [Leica & Mono hardware](screenshots/leica-mono.png)
+- [Guardbase AI security](screenshots/guardbase-security.png)
+- [Motto electric mobility](screenshots/motto-mobility.png)
+- [Olipop botanical beverage](screenshots/olipop-beverage.png)
+- [Kontour & Arca lighting](screenshots/kontour-lighting.png)
+
+![ChromaKit showcase gallery](screenshots/gallery.png)
+
 ---
 
-## Included 5 Showcase Web Pages (`/pages`)
+## Included 5 Showcase Web Pages
 
-1. **`/pages/01-leica-mono-hardware.html`**: Precision Optical & Audio Hardware Flagship (*Ice Blue `#D5E5F0` · Midnight Ink `#081D2B` · Vermilion `#EE4222`*)
-2. **`/pages/02-guardbase-ai-security.html`**: AI Security & ASCII Cloud Console (*Paper White `#FFFFFF` · Ink Black `#0B0B0B` · Cornflower Blue `#5482FF`*)
-3. **`/pages/03-motto-electric-mobility.html`**: Urban Electric Cruiser Configurator (*Almond Cream `#F3ECC8` · Petrol Teal `#0D5258` · Electric Violet `#A862F7`*)
-4. **`/pages/04-olipop-zest-beverage.html`**: Botanical Beverage D2C Storefront (*Lemon Yellow `#F4E452` · Cobalt Blue `#0D32B8` · Hot Pink `#FF318C`*)
-5. **`/pages/05-kontour-arca-studio.html`**: Architectural Lighting & Design Studio (*Jet Black `#0B0B0B` · Soft White `#F3F3F2` · Flame Orange `#FF4D00`*)
+1. [**Leica & Mono hardware**](https://chromakit-showcase.vercel.app/01-leica-mono-hardware.html) (`public/pages/01-leica-mono-hardware.html`): Precision optical & audio flagship (*Ice Blue `#D5E5F0` · Midnight Ink `#081D2B` · Vermilion `#EE4222`*)
+2. [**Guardbase AI security**](https://chromakit-showcase.vercel.app/02-guardbase-ai-security.html) (`public/pages/02-guardbase-ai-security.html`): AI security console (*Paper White `#FFFFFF` · Ink Black `#0B0B0B` · Cornflower Blue `#5482FF`*)
+3. [**Motto electric mobility**](https://chromakit-showcase.vercel.app/03-motto-electric-mobility.html) (`public/pages/03-motto-electric-mobility.html`): Urban electric cruiser (*Almond Cream `#F3ECC8` · Petrol Teal `#0D5258` · Electric Violet `#A862F7`*)
+4. [**Olipop botanical beverage**](https://chromakit-showcase.vercel.app/04-olipop-zest-beverage.html) (`public/pages/04-olipop-zest-beverage.html`): Botanical beverage storefront (*Lemon Yellow `#F4E452` · Cobalt Blue `#0D32B8` · Hot Pink `#FF318C`*)
+5. [**Kontour & Arca lighting**](https://chromakit-showcase.vercel.app/05-kontour-arca-studio.html) (`public/pages/05-kontour-arca-studio.html`): Architectural lighting studio (*Jet Black `#0B0B0B` · Soft White `#F3F3F2` · Flame Orange `#FF4D00`*)
 
 ---
 

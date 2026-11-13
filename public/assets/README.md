@@ -1,8 +1,6 @@
 # External Media Assets (`public/assets/aistudio/`)
 
-The reference video (`.mp4`) and image (`.webp`) files in `public/assets/aistudio/` (~23 MB total) are excluded from Git via `.gitignore` to prevent repository bloat.
-
-For production deployments, host these media files externally (e.g., on a CDN, Cloudflare R2 / S3, GitHub Releases, or Git LFS) and update the asset paths in `src/App.tsx`, `src/components/DesignGuidesView.tsx`, and `src/data/palettes.ts`.
+The filenames below are the source of truth for media referenced by the React app. All 12 referenced files are present in `public/assets/aistudio/` and are included in Vite's static output, so the existing `/assets/aistudio/...` URLs resolve locally and in the deployed site. The two unreferenced files marked safe to omit are intentionally absent.
 
 ## Exact File Paths Referenced by the React App
 
