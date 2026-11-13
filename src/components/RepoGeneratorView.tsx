@@ -11,7 +11,7 @@ import {
   Globe,
   Terminal
 } from 'lucide-react';
-import { ColorPalette } from '../data/palettes';
+import { ColorPalette, EXTRACTED_PALETTES } from '../data/palettes';
 import {
   GeneratedRepoFile,
   RepoFileId,
@@ -101,7 +101,7 @@ export const RepoGeneratorView: React.FC<RepoGeneratorViewProps> = ({
                     : 'text-[#9A9890] hover:text-[#F4F1EA]'
                 }`}
               >
-                All 24 Palettes + 5 Pages
+                All {EXTRACTED_PALETTES.length} Palettes + 5 Pages
               </button>
               <button
                 type="button"

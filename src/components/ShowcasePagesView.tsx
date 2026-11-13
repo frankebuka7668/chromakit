@@ -484,7 +484,7 @@ export const ShowcasePagesView: React.FC<ShowcasePagesViewProps> = ({
 
             <div className="flex items-center gap-2">
               <label htmlFor="all-palette-select" className="text-[#9A9890] font-mono">
-                All 24 combinations:
+                All {EXTRACTED_PALETTES.length} combinations:
               </label>
               <select
                 id="all-palette-select"

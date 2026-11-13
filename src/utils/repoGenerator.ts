@@ -268,7 +268,7 @@ export function generateRepoFiles(
 
 ## Attribution & Sources
 
-The 24-palette catalog below was compiled from public color-system posts
+The curated, growing catalog of color systems below was compiled from public color-system posts
 by four TikTok creators: [@vixdesignz](https://www.tiktok.com/@vixdesignz),
 [@toolandtea](https://www.tiktok.com/@toolandtea), [@bymarcoperez](https://www.tiktok.com/@bymarcoperez),
 and [@asongstudio_](https://www.tiktok.com/@asongstudio_). Hex values, role allocations,
@@ -279,7 +279,7 @@ the cited palette curation itself is not claimed as original work.
 
 ---
 
-## Complete Extracted Color Catalog (${palettes.length} System${palettes.length === 1 ? '' : 's'})
+## Complete Extracted Color Catalog (A Curated, Growing Catalog of Color Systems)
 
 ${palettes
   .map((p, idx) => {
@@ -320,18 +320,22 @@ ${BACKGROUND_RECIPES.map(
 ${COMPLIANCE_CHECKS.map(
   (c) => `- [ ] **${c.index}. ${c.title}** (*${c.pillar}*): ${c.whyItMatters}`
 ).join('\n')}
+
+---
+
+## Maintaining
+
+\`SKILL.md\` is the single source of truth for all AI coding agent rules in this repository. Both \`CLAUDE.md\` and \`.cursorrules\` are auto-generated from \`SKILL.md\` (with YAML frontmatter stripped).
+
+After editing \`SKILL.md\` by hand, propagate your changes by running:
+
+\`\`\`bash
+npm run sync-rules
+\`\`\`
 `;
 
   // 2. SKILL.md
-  const skillContent = `---
-name: "chromakit-color-and-design-system"
-description: >-
-  Enforces curated 60-30-10 color combinations, functional color role assignments,
-  the 20 Ways to Unslop AI Designs, 22 non-flat background recipes, and 20 WCAG/legal
-  production checks. Read this skill before generating or styling any UI component.
----
-
-# ChromaKit Agent Skill: Color Combinations & Anti-Slop Rules
+  const skillBody = `# ChromaKit Agent Skill: Color Combinations & Anti-Slop Rules
 
 ## 1. Functional Color Role Rules (@vixdesignz & Purist Method)
 
@@ -364,6 +368,8 @@ Never pick colors at random or default to generic indigo/purple gradients. Every
 
 ## 3. Approved Alternative Palettes Catalog
 
+A curated, growing catalog of color systems:
+
 | ID | Name | Category | Posture | 60% Background | 30% Surface/Text | 10% Action | Rare Accent |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 ${palettes
@@ -389,44 +395,21 @@ ${BACKGROUND_RECIPES.map((b) => `- **${b.name}** (${b.category}): ${b.agentPromp
 ${COMPLIANCE_CHECKS.map((c) => `- [ ] **${c.title}**: ${c.claudePrompt}`).join('\n')}
 `;
 
-  // 3. CLAUDE.md
-  const claudeContent = `# CLAUDE.md — Frontend Color & Design System Directives
+  const skillContent = `---
+name: "chromakit-color-and-design-system"
+description: >-
+  Enforces curated 60-30-10 color combinations, functional color role assignments,
+  the 20 Ways to Unslop AI Designs, 22 non-flat background recipes, and 20 WCAG/legal
+  production checks. Read this skill before generating or styling any UI component.
+---
 
-When creating or modifying UI components in this repository, strictly follow the **ChromaKit 60-30-10 Color Architecture** and **Anti-Slop Constitution**.
+${skillBody}`;
 
-## Active Color Tokens (${activePalette.name})
+  const syncedRulesContent = `<!-- AUTO-GENERATED from SKILL.md. Edit SKILL.md, then run \`npm run sync-rules\`. -->\n\n${skillBody}`;
 
-- **60% Background (\`--color-bg\`)**: \`${bg.hex}\` (${bg.name}) — ${bg.jobDescription}
-- **30% Surface & Text (\`--color-surface\`)**: \`${surface.hex}\` (${surface.name}) — ${surface.jobDescription}
-- **10% Primary Action (\`--color-action\`)**: \`${action.hex}\` (${action.name}) — ${action.jobDescription}
-${rare ? `- **Rare Accent (\`--color-accent-rare\`)**: \`${rare.hex}\` (${rare.name}) — ${rare.jobDescription}\n` : ''}
-## Non-Negotiable Design Rules
-
-1. **Spend the Action Color Once**: Only one primary button per viewport section may use \`${action.hex}\`. Secondary actions must use quiet borders or surface fills.
-2. **Nested Corner Radius Math**: Always compute inner border radius as \`r_inner = r_outer - padding\` (e.g., outer \`rounded-2xl\` 16px with \`p-2\` 8px padding requires inner \`rounded-lg\` 8px).
-3. **Typography & Numerals**:
-   - Never italicize random words in headlines.
-   - Apply \`text-balance\` (\`text-wrap: balance\`) to all headlines to prevent orphan trailing words.
-   - Use \`tabular-nums\` (\`font-variant-numeric: tabular-nums\`) on all numbers, prices, metrics, and counters.
-   - Reserve monospace fonts strictly for terminal commands, hex codes, and numerical telemetry.
-4. **Zero Filler Badges**: Delete decorative "NEW" pill badges above hero headlines and drop redundant section kickers.
-5. **Show the Actual Product**: Render interactive product states rather than abstract 3D spheres or placeholder boxes.
-`;
-
-  // 4. .cursorrules
-  const cursorRulesContent = `# .cursorrules — ChromaKit Color & Anti-Slop System
-
-You are an expert design engineer. Enforce the following color tokens and UI rules on every code edit:
-
-## 1. Color System (60-30-10 Rule — ${activePalette.name})
-- 60% Background Canvas: ${bg.hex} (${bg.name})
-- 30% Text & Structural Surfaces: ${surface.hex} (${surface.name})
-- 10% Focal Action CTA: ${action.hex} (${action.name})${rare ? `\n- Rare Accent: ${rare.hex} (${rare.name})` : ''}
-- Rule: Spend the 10% action color (${action.hex}) strictly ONCE per primary action group.
-
-## 2. 20 Ways to Unslop UI
-${UNSLOP_RULES.map((r) => `- ${r.title}: ${r.agentInstruction}`).join('\n')}
-`;
+  // 3. CLAUDE.md & 4. .cursorrules (synced from SKILL.md body)
+  const claudeContent = syncedRulesContent;
+  const cursorRulesContent = syncedRulesContent;
 
   // 5. tokens.json
   const tokensPayload = {

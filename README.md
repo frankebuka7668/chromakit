@@ -30,7 +30,7 @@
 
 ## Attribution & Sources
 
-The 24-palette catalog below was compiled from public color-system posts
+The curated, growing catalog of color systems below was compiled from public color-system posts
 by four TikTok creators: [@vixdesignz](https://www.tiktok.com/@vixdesignz),
 [@toolandtea](https://www.tiktok.com/@toolandtea), [@bymarcoperez](https://www.tiktok.com/@bymarcoperez),
 and [@asongstudio_](https://www.tiktok.com/@asongstudio_). Hex values, role allocations,
@@ -41,7 +41,7 @@ the cited palette curation itself is not claimed as original work.
 
 ---
 
-## Complete Extracted Color Catalog (24 Systems)
+## Complete Extracted Color Catalog (A Curated, Growing Catalog of Color Systems)
 
 ### 1. Vix Functional System (`vix-functional-system`) — *Tech & SaaS*
 - **60% Background**: Ink (`#0E0E10`)
@@ -271,3 +271,16 @@ the cited palette curation itself is not claimed as original work.
 - [ ] **18. Unsubscribe link** (*Privacy & Consent*): CAN-SPAM and GDPR require a one-click unsubscribe mechanism in every commercial or marketing email.
 - [ ] **19. License stock images** (*Honest UX & Claims*): Hotlinking unverified images or scraping copyrighted photography exposes repositories to DMCA takedowns and statutory damages.
 - [ ] **20. Data deletion option** (*Privacy & Consent*): Right to Erasure (GDPR Art. 17 / CCPA) and Apple App Store rules require a self-serve account & data deletion flow.
+
+---
+
+## Maintaining
+
+`SKILL.md` is the single source of truth for all AI coding agent rules in this repository. Both `CLAUDE.md` and `.cursorrules` are auto-generated from `SKILL.md` (with YAML frontmatter stripped).
+
+After editing `SKILL.md` by hand, propagate your changes by running:
+
+```bash
+npm run sync-rules
+```
+

@@ -266,7 +266,7 @@ export default function App() {
                 : ''
             }`}
           >
-            24 Color Systems
+            {EXTRACTED_PALETTES.length} Color Systems
           </button>
           <button
             type="button"
@@ -308,7 +308,7 @@ export default function App() {
       <div className="flex md:hidden items-center gap-2 overflow-x-auto px-6 py-2.5 border-b border-[#F4F1EA]/10 bg-[#16161A]">
         {[
           { id: 'showcase', label: '5 Live Websites' },
-          { id: 'palettes', label: '24 Color Systems' },
+          { id: 'palettes', label: `${EXTRACTED_PALETTES.length} Color Systems` },
           { id: 'guides', label: 'Unslop & Backgrounds' },
           { id: 'sources', label: 'Source Videos' }
         ].map((tab) => (
@@ -348,7 +348,7 @@ export default function App() {
               </h1>
 
               <p className="mt-4 text-sm sm:text-base text-[#9A9890] max-w-2xl leading-relaxed">
-                When you ask Claude Code, Cursor, or Windsurf to build a UI without design guardrails, you get glowing indigo blobs, competing CTA buttons, and low-contrast grey text. <strong className="text-[#F4F1EA]">ChromaKit</strong> is a drop-in open-source repository containing <strong className="text-[#F4F1EA]">24 human-curated 60-30-10 color systems</strong>, <strong className="text-[#F4F1EA]">5 full production websites</strong>, and <strong className="text-[#F4F1EA]">20 anti-slop rules</strong> that your coding agent reads automatically.
+                When you ask Claude Code, Cursor, or Windsurf to build a UI without design guardrails, you get glowing indigo blobs, competing CTA buttons, and low-contrast grey text. <strong className="text-[#F4F1EA]">ChromaKit</strong> is a drop-in open-source repository containing <strong className="text-[#F4F1EA]">{EXTRACTED_PALETTES.length} human-curated 60-30-10 color systems</strong>, <strong className="text-[#F4F1EA]">5 full production websites</strong>, and <strong className="text-[#F4F1EA]">20 anti-slop rules</strong> that your coding agent reads automatically.
               </p>
             </div>
 
@@ -415,7 +415,7 @@ export default function App() {
                       : 'bg-[#16161A] text-[#F4F1EA] border-[#F4F1EA]/15 hover:border-[#F4F1EA]/40'
                   }`}
                 >
-                  2. Browse All 24 Palettes
+                  2. Browse All {EXTRACTED_PALETTES.length} Palettes
                 </button>
                 <button
                   type="button"
@@ -659,7 +659,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* 24 Palette Cards Grid */}
+            {/* Palette Cards Grid */}
             {filteredPalettes.length === 0 ? (
               <div className="rounded-xl border border-[#F4F1EA]/10 bg-[#16161A] p-12 text-center space-y-3">
                 <p className="text-base font-medium text-[#F4F1EA]">
@@ -921,7 +921,7 @@ export default function App() {
               onClick={() => setActiveSection('palettes')}
               className="hover:text-[#F4F1EA] transition-colors"
             >
-              24 Color Systems
+              {EXTRACTED_PALETTES.length} Color Systems
             </button>
             <button
               type="button"

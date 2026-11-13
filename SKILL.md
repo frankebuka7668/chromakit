@@ -36,6 +36,8 @@ Never pick colors at random or default to generic indigo/purple gradients. Every
 
 ## 3. Approved Alternative Palettes Catalog
 
+A curated, growing catalog of color systems:
+
 | ID | Name | Category | Posture | 60% Background | 30% Surface/Text | 10% Action | Rare Accent |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `vix-functional-system` | Vix Functional System | Tech & SaaS | dark | Ink (`#0E0E10`) | Bone (`#F4F1EA`) | Flame (`#FF4D1F`) | Volt (`#D4FF3A`) |
