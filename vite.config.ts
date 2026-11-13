@@ -5,8 +5,8 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    // Publish only the five standalone showcase pages, not the rest of public/.
-    publicDir: 'public/pages',
+    // Publish the five showcase pages and README-mapped media files only.
+    publicDir: 'public',
     preview: {
       // Arena assigns a new preview hostname per session; allow only its domain suffix.
       allowedHosts: ['.e2b.app'],
