@@ -32,15 +32,12 @@ export const RepoGeneratorView: React.FC<RepoGeneratorViewProps> = ({
   onCopyText
 }) => {
   const [scope, setScope] = useState<'all' | 'active'>('all');
-  const [githubRemoteUrl, setGithubRemoteUrl] = useState<string>(
-    'https://github.com/your-username/chromakit.git'
-  );
-  const [selectedFileId, setSelectedFileId] = useState<RepoFileId>('push-to-github.sh');
+  const [selectedFileId, setSelectedFileId] = useState<RepoFileId>('SKILL.md');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const files = useMemo(
-    () => generateRepoFiles(activePalette, scope, githubRemoteUrl),
-    [activePalette, scope, githubRemoteUrl]
+    () => generateRepoFiles(activePalette, scope),
+    [activePalette, scope]
   );
 
   const currentFile: GeneratedRepoFile =
@@ -71,34 +68,26 @@ export const RepoGeneratorView: React.FC<RepoGeneratorViewProps> = ({
     URL.revokeObjectURL(url);
   };
 
-  const handleDownloadPushScript = () => {
-    const setupFile = files.find((f) => f.id === 'push-to-github.sh');
-    if (setupFile) {
-      handleDownloadFile(setupFile);
-    }
-  };
-
   const renderIcon = (id: RepoFileId) => {
     if (id === 'tokens.json') return <FileJson className="w-4 h-4 text-[#D4FF3A]" />;
     if (id === 'tailwind-v4-theme.css') return <FileCode className="w-4 h-4 text-[#5482FF]" />;
-    if (id === 'push-to-github.sh') return <Terminal className="w-4 h-4 text-[#FF4D1F]" />;
-    if (id.startsWith('pages/')) return <Globe className="w-4 h-4 text-[#6BFCC4]" />;
+    if (id.startsWith('/pages/')) return <Globe className="w-4 h-4 text-[#6BFCC4]" />;
     return <FileText className="w-4 h-4 text-[#F4F1EA]" />;
   };
 
   return (
     <div className="space-y-6">
-      {/* Header & GitHub Remote Push Bar */}
+      {/* Header & Repository Metadata Bar */}
       <div className="rounded-2xl border border-[#F4F1EA]/10 bg-[#16161A] p-2">
         <div className="rounded-lg bg-[#0E0E10] p-5 space-y-5">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#F4F1EA]/10 pb-4">
             <div>
               <div className="flex items-center gap-2 text-xs text-[#9A9890] font-mono">
                 <GitBranch className="w-3.5 h-3.5 text-[#FF4D1F]" />
-                <span>100% FREE &amp; OPEN-SOURCE (MIT) · GITHUB REPOSITORY EXPORTER</span>
+                <span>100% FREE &amp; OPEN-SOURCE (MIT) · AGENT &amp; DESIGN TOKEN FILES</span>
               </div>
               <h2 className="mt-1 text-2xl font-display font-semibold text-[#F4F1EA]">
-                Push All 5 Free Web Pages, 24 Color Systems &amp; Agent Rules to GitHub
+                Agent Rules, Design Tokens &amp; Standalone HTML Pages
               </h2>
             </div>
 
@@ -128,12 +117,12 @@ export const RepoGeneratorView: React.FC<RepoGeneratorViewProps> = ({
             </div>
           </div>
 
-          {/* Copyable Repo Name & Description for GitHub Creation */}
+          {/* Copyable Repo Name & Description */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
             <div className="lg:col-span-4 rounded-xl border border-[#F4F1EA]/10 bg-[#16161A] p-3.5 flex items-center justify-between gap-3">
               <div className="min-w-0">
                 <div className="text-[11px] font-mono text-[#9A9890]">
-                  RECOMMENDED GITHUB REPO NAME
+                  RECOMMENDED REPO NAME
                 </div>
                 <div className="mt-1 text-sm font-mono font-bold text-[#F4F1EA] truncate">
                   {RECOMMENDED_REPO_NAME}
@@ -152,7 +141,7 @@ export const RepoGeneratorView: React.FC<RepoGeneratorViewProps> = ({
             <div className="lg:col-span-8 rounded-xl border border-[#F4F1EA]/10 bg-[#16161A] p-3.5 flex items-center justify-between gap-3">
               <div className="min-w-0">
                 <div className="text-[11px] font-mono text-[#9A9890]">
-                  RECOMMENDED GITHUB REPO DESCRIPTION
+                  RECOMMENDED REPO DESCRIPTION
                 </div>
                 <div className="mt-1 text-xs text-[#F4F1EA] truncate">
                   {RECOMMENDED_REPO_DESCRIPTION}
@@ -168,37 +157,6 @@ export const RepoGeneratorView: React.FC<RepoGeneratorViewProps> = ({
               </button>
             </div>
           </div>
-
-          {/* GitHub Remote URL Input */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-end">
-            <div className="lg:col-span-8 space-y-1.5">
-              <label
-                htmlFor="github-remote-input"
-                className="block text-xs font-mono text-[#9A9890]"
-              >
-                YOUR GITHUB REPOSITORY URL (Paste your repo URL to embed in push-to-github.sh):
-              </label>
-              <input
-                id="github-remote-input"
-                type="text"
-                value={githubRemoteUrl}
-                onChange={(e) => setGithubRemoteUrl(e.target.value)}
-                placeholder="https://github.com/username/chromakit.git"
-                className="w-full rounded-lg bg-[#16161A] border border-[#F4F1EA]/20 px-4 py-2.5 text-xs font-mono text-[#F4F1EA] focus:outline-none focus:border-[#FF4D1F]"
-              />
-            </div>
-
-            <div className="lg:col-span-4 flex items-center gap-2.5">
-              <button
-                type="button"
-                onClick={handleDownloadPushScript}
-                className="flex-1 py-2.5 px-4 rounded-lg bg-[#FF4D1F] text-white text-xs font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 whitespace-nowrap shrink-0"
-              >
-                <Download className="w-3.5 h-3.5" />
-                Download push-to-github.sh
-              </button>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -208,7 +166,7 @@ export const RepoGeneratorView: React.FC<RepoGeneratorViewProps> = ({
         <div className="lg:col-span-4 rounded-xl border border-[#F4F1EA]/10 bg-[#16161A] p-4 space-y-3">
           <div className="flex items-center gap-2 text-xs font-mono text-[#9A9890] pb-2 border-b border-[#F4F1EA]/10">
             <FolderGit2 className="w-4 h-4 text-[#F4F1EA]" />
-            <span>chromakit/ (12 free MIT files)</span>
+            <span>chromakit/ (11 free MIT files)</span>
           </div>
 
           <div className="space-y-1 max-h-[560px] overflow-y-auto pr-1">

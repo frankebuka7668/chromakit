@@ -6,11 +6,11 @@
 
 ## Included 5 Showcase Web Pages (`/pages`)
 
-1. **`pages/01-leica-mono-hardware.html`**: Precision Optical & Audio Hardware Flagship (*Ice Blue `#D5E5F0` · Midnight Ink `#081D2B` · Vermilion `#EE4222`*)
-2. **`pages/02-guardbase-ai-security.html`**: AI Security & ASCII Cloud Console (*Paper White `#FFFFFF` · Ink Black `#0B0B0B` · Cornflower Blue `#5482FF`*)
-3. **`pages/03-motto-electric-mobility.html`**: Urban Electric Cruiser Configurator (*Almond Cream `#F3ECC8` · Petrol Teal `#0D5258` · Electric Violet `#A862F7`*)
-4. **`pages/04-olipop-zest-beverage.html`**: Botanical Beverage D2C Storefront (*Lemon Yellow `#F4E452` · Cobalt Blue `#0D32B8` · Hot Pink `#FF318C`*)
-5. **`pages/05-kontour-arca-studio.html`**: Architectural Lighting & Design Studio (*Jet Black `#0B0B0B` · Soft White `#F3F3F2` · Flame Orange `#FF4D00`*)
+1. **`/pages/01-leica-mono-hardware.html`**: Precision Optical & Audio Hardware Flagship (*Ice Blue `#D5E5F0` · Midnight Ink `#081D2B` · Vermilion `#EE4222`*)
+2. **`/pages/02-guardbase-ai-security.html`**: AI Security & ASCII Cloud Console (*Paper White `#FFFFFF` · Ink Black `#0B0B0B` · Cornflower Blue `#5482FF`*)
+3. **`/pages/03-motto-electric-mobility.html`**: Urban Electric Cruiser Configurator (*Almond Cream `#F3ECC8` · Petrol Teal `#0D5258` · Electric Violet `#A862F7`*)
+4. **`/pages/04-olipop-zest-beverage.html`**: Botanical Beverage D2C Storefront (*Lemon Yellow `#F4E452` · Cobalt Blue `#0D32B8` · Hot Pink `#FF318C`*)
+5. **`/pages/05-kontour-arca-studio.html`**: Architectural Lighting & Design Studio (*Jet Black `#0B0B0B` · Soft White `#F3F3F2` · Flame Orange `#FF4D00`*)
 
 ---
 
@@ -25,6 +25,19 @@
    - The first two colors set the mood and structural legibility. The third color creates an unmistakable focal point.
 3. **Spend the Action Colour Once**:
    - Put the 10% action color on everything and it stops meaning anything. Reserve it strictly for the single clearest next step per viewport.
+
+---
+
+## Attribution & Sources
+
+The 24-palette catalog below was compiled from public color-system posts
+by four TikTok creators: [@vixdesignz](https://www.tiktok.com/@vixdesignz),
+[@toolandtea](https://www.tiktok.com/@toolandtea), [@bymarcoperez](https://www.tiktok.com/@bymarcoperez),
+and [@asongstudio_](https://www.tiktok.com/@asongstudio_). Hex values, role allocations,
+and the "why it works" quotes are credited to them individually in each entry
+below. This repository's code, documentation structure, showcase pages, and
+AI agent skill files are original and licensed under MIT (see LICENSE);
+the cited palette curation itself is not claimed as original work.
 
 ---
 

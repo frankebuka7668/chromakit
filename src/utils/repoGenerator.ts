@@ -18,12 +18,11 @@ export type RepoFileId =
   | '.cursorrules'
   | 'tokens.json'
   | 'tailwind-v4-theme.css'
-  | 'pages/01-leica-mono-hardware.html'
-  | 'pages/02-guardbase-ai-security.html'
-  | 'pages/03-motto-electric-mobility.html'
-  | 'pages/04-olipop-zest-beverage.html'
-  | 'pages/05-kontour-arca-studio.html'
-  | 'push-to-github.sh';
+  | '/pages/01-leica-mono-hardware.html'
+  | '/pages/02-guardbase-ai-security.html'
+  | '/pages/03-motto-electric-mobility.html'
+  | '/pages/04-olipop-zest-beverage.html'
+  | '/pages/05-kontour-arca-studio.html';
 
 export interface GeneratedRepoFile {
   id: RepoFileId;
@@ -171,8 +170,7 @@ function buildStandalonePageHtml(
 
 export function generateRepoFiles(
   activePalette: ColorPalette,
-  scope: 'all' | 'active',
-  githubRemoteUrl = 'https://github.com/your-username/chromakit-color-system.git'
+  scope: 'all' | 'active'
 ): GeneratedRepoFile[] {
   const palettes = scope === 'all' ? EXTRACTED_PALETTES : [activePalette];
 
@@ -246,11 +244,11 @@ export function generateRepoFiles(
 
 ## Included 5 Showcase Web Pages (\`/pages\`)
 
-1. **\`pages/01-leica-mono-hardware.html\`**: Precision Optical & Audio Hardware Flagship (*Ice Blue \`#D5E5F0\` · Midnight Ink \`#081D2B\` · Vermilion \`#EE4222\`*)
-2. **\`pages/02-guardbase-ai-security.html\`**: AI Security & ASCII Cloud Console (*Paper White \`#FFFFFF\` · Ink Black \`#0B0B0B\` · Cornflower Blue \`#5482FF\`*)
-3. **\`pages/03-motto-electric-mobility.html\`**: Urban Electric Cruiser Configurator (*Almond Cream \`#F3ECC8\` · Petrol Teal \`#0D5258\` · Electric Violet \`#A862F7\`*)
-4. **\`pages/04-olipop-zest-beverage.html\`**: Botanical Beverage D2C Storefront (*Lemon Yellow \`#F4E452\` · Cobalt Blue \`#0D32B8\` · Hot Pink \`#FF318C\`*)
-5. **\`pages/05-kontour-arca-studio.html\`**: Architectural Lighting & Design Studio (*Jet Black \`#0B0B0B\` · Soft White \`#F3F3F2\` · Flame Orange \`#FF4D00\`*)
+1. **\`/pages/01-leica-mono-hardware.html\`**: Precision Optical & Audio Hardware Flagship (*Ice Blue \`#D5E5F0\` · Midnight Ink \`#081D2B\` · Vermilion \`#EE4222\`*)
+2. **\`/pages/02-guardbase-ai-security.html\`**: AI Security & ASCII Cloud Console (*Paper White \`#FFFFFF\` · Ink Black \`#0B0B0B\` · Cornflower Blue \`#5482FF\`*)
+3. **\`/pages/03-motto-electric-mobility.html\`**: Urban Electric Cruiser Configurator (*Almond Cream \`#F3ECC8\` · Petrol Teal \`#0D5258\` · Electric Violet \`#A862F7\`*)
+4. **\`/pages/04-olipop-zest-beverage.html\`**: Botanical Beverage D2C Storefront (*Lemon Yellow \`#F4E452\` · Cobalt Blue \`#0D32B8\` · Hot Pink \`#FF318C\`*)
+5. **\`/pages/05-kontour-arca-studio.html\`**: Architectural Lighting & Design Studio (*Jet Black \`#0B0B0B\` · Soft White \`#F3F3F2\` · Flame Orange \`#FF4D00\`*)
 
 ---
 
@@ -265,6 +263,19 @@ export function generateRepoFiles(
    - The first two colors set the mood and structural legibility. The third color creates an unmistakable focal point.
 3. **Spend the Action Colour Once**:
    - Put the 10% action color on everything and it stops meaning anything. Reserve it strictly for the single clearest next step per viewport.
+
+---
+
+## Attribution & Sources
+
+The 24-palette catalog below was compiled from public color-system posts
+by four TikTok creators: [@vixdesignz](https://www.tiktok.com/@vixdesignz),
+[@toolandtea](https://www.tiktok.com/@toolandtea), [@bymarcoperez](https://www.tiktok.com/@bymarcoperez),
+and [@asongstudio_](https://www.tiktok.com/@asongstudio_). Hex values, role allocations,
+and the "why it works" quotes are credited to them individually in each entry
+below. This repository's code, documentation structure, showcase pages, and
+AI agent skill files are original and licensed under MIT (see LICENSE);
+the cited palette curation itself is not claimed as original work.
 
 ---
 
@@ -427,11 +438,11 @@ ${UNSLOP_RULES.map((r) => `- ${r.title}: ${r.agentInstruction}`).join('\n')}
       totalPalettes: palettes.length
     },
     showcasePages: [
-      { page: '01', file: 'pages/01-leica-mono-hardware.html', paletteId: 'leica-look-closer' },
-      { page: '02', file: 'pages/02-guardbase-ai-security.html', paletteId: 'guardbase-security' },
-      { page: '03', file: 'pages/03-motto-electric-mobility.html', paletteId: 'motto-almond-petrol-violet' },
-      { page: '04', file: 'pages/04-olipop-zest-beverage.html', paletteId: 'olipop-sip-happy' },
-      { page: '05', file: 'pages/05-kontour-arca-studio.html', paletteId: 'kontour-system' }
+      { page: '01', file: '/pages/01-leica-mono-hardware.html', paletteId: 'leica-look-closer' },
+      { page: '02', file: '/pages/02-guardbase-ai-security.html', paletteId: 'guardbase-security' },
+      { page: '03', file: '/pages/03-motto-electric-mobility.html', paletteId: 'motto-almond-petrol-violet' },
+      { page: '04', file: '/pages/04-olipop-zest-beverage.html', paletteId: 'olipop-sip-happy' },
+      { page: '05', file: '/pages/05-kontour-arca-studio.html', paletteId: 'kontour-system' }
     ],
     palettes: Object.fromEntries(
       palettes.map((p) => [
@@ -482,88 +493,7 @@ ${palettes
 }
 `;
 
-  // 7. push-to-github.sh (Full repo creator + 5 web pages + Git push script)
-  const cleanRemote = githubRemoteUrl.trim() || 'https://github.com/your-username/chromakit-color-system.git';
-  const bashScript = `#!/usr/bin/env bash
-# ChromaKit — Full Repository Generator & GitHub Push Script
-# Generates README.md, SKILL.md, CLAUDE.md, .cursorrules, tokens.json, tailwind-v4-theme.css,
-# and all 5 showcase web pages in /pages, then commits and pushes to your GitHub remote.
-
-set -e
-mkdir -p pages
-
-cat << 'EOF_README' > README.md
-${readmeContent}
-EOF_README
-
-cat << 'EOF_SKILL' > SKILL.md
-${skillContent}
-EOF_SKILL
-
-cat << 'EOF_CLAUDE' > CLAUDE.md
-${claudeContent}
-EOF_CLAUDE
-
-cat << 'EOF_CURSOR' > .cursorrules
-${cursorRulesContent}
-EOF_CURSOR
-
-cat << 'EOF_TOKENS' > tokens.json
-${JSON.stringify(tokensPayload, null, 2)}
-EOF_TOKENS
-
-cat << 'EOF_CSS' > tailwind-v4-theme.css
-${cssContent}
-EOF_CSS
-
-cat << 'EOF_PAGE1' > pages/01-leica-mono-hardware.html
-${page1Html}
-EOF_PAGE1
-
-cat << 'EOF_PAGE2' > pages/02-guardbase-ai-security.html
-${page2Html}
-EOF_PAGE2
-
-cat << 'EOF_PAGE3' > pages/03-motto-electric-mobility.html
-${page3Html}
-EOF_PAGE3
-
-cat << 'EOF_PAGE4' > pages/04-olipop-zest-beverage.html
-${page4Html}
-EOF_PAGE4
-
-cat << 'EOF_PAGE5' > pages/05-kontour-arca-studio.html
-${page5Html}
-EOF_PAGE5
-
-echo "Created all ChromaKit design files and 5 web pages!"
-
-if [ ! -d ".git" ]; then
-  git init
-  git branch -M main
-fi
-
-git add README.md SKILL.md CLAUDE.md .cursorrules tokens.json tailwind-v4-theme.css pages/
-git commit -m "feat: add 24 extracted color combinations, 5 showcase web pages, and AI agent rules"
-
-if git remote | grep -q "^origin$"; then
-  git remote set-url origin "${cleanRemote}"
-else
-  git remote add origin "${cleanRemote}"
-fi
-
-echo "Pushing to ${cleanRemote}..."
-git push -u origin main
-`;
-
   return [
-    {
-      id: 'push-to-github.sh',
-      filename: 'push-to-github.sh',
-      language: 'bash',
-      description: 'One-step script that creates all files + 5 web pages and pushes directly to your GitHub repo.',
-      content: bashScript
-    },
     {
       id: 'SKILL.md',
       filename: 'SKILL.md',
@@ -607,35 +537,35 @@ git push -u origin main
       content: cssContent
     },
     {
-      id: 'pages/01-leica-mono-hardware.html',
+      id: '/pages/01-leica-mono-hardware.html',
       filename: '01-leica-mono-hardware.html',
       language: 'html',
       description: 'Page 01: Leica & Mono Precision Optical Hardware Flagship (Ice Blue, Midnight Ink, Vermilion).',
       content: page1Html
     },
     {
-      id: 'pages/02-guardbase-ai-security.html',
+      id: '/pages/02-guardbase-ai-security.html',
       filename: '02-guardbase-ai-security.html',
       language: 'html',
       description: 'Page 02: Guardbase AI Security & ASCII Cloud (Paper White, Ink Black, Cornflower Blue).',
       content: page2Html
     },
     {
-      id: 'pages/03-motto-electric-mobility.html',
+      id: '/pages/03-motto-electric-mobility.html',
       filename: '03-motto-electric-mobility.html',
       language: 'html',
       description: 'Page 03: Motto M-01 Urban Electric Cruiser (Almond Cream, Petrol Teal, Electric Violet).',
       content: page3Html
     },
     {
-      id: 'pages/04-olipop-zest-beverage.html',
+      id: '/pages/04-olipop-zest-beverage.html',
       filename: '04-olipop-zest-beverage.html',
       language: 'html',
       description: 'Page 04: Olipop & Zest Botanical Beverage Storefront (Lemon Yellow, Cobalt Blue, Hot Pink).',
       content: page4Html
     },
     {
-      id: 'pages/05-kontour-arca-studio.html',
+      id: '/pages/05-kontour-arca-studio.html',
       filename: '05-kontour-arca-studio.html',
       language: 'html',
       description: 'Page 05: Kontour & Arca Architectural Lighting Studio (Jet Black, Soft White, Flame Orange).',

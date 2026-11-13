@@ -1,10 +1,16 @@
 import React, { useMemo, useState } from 'react';
 import {
+  ArrowRight,
   Check,
+  Code2,
   Copy,
   Download,
   Film,
-  Search
+  GitBranch,
+  Layers,
+  Search,
+  Sparkles,
+  Terminal
 } from 'lucide-react';
 import {
   ColorPalette,
@@ -18,7 +24,7 @@ import { LiveMockupStage } from './components/LiveMockupStage';
 import { DesignGuidesView } from './components/DesignGuidesView';
 import { RepoGeneratorView } from './components/RepoGeneratorView';
 import { ShowcasePagesView } from './components/ShowcasePagesView';
-import { generateRepoFiles } from './utils/repoGenerator';
+import { RepoFileId, generateRepoFiles } from './utils/repoGenerator';
 
 type ActiveSection = 'showcase' | 'palettes' | 'guides' | 'repo' | 'sources';
 
@@ -73,25 +79,11 @@ const SOURCE_VIDEOS = [
     summary: 'Veyra Tech Brand, Little Crumb Cafe, Atelier Law Firm, and Oriel Skincare 4-color Pantone systems.'
   },
   {
-    id: 'video-unslop-20',
-    title: '20 Ways to Unslop AI Designs (Under 40s)',
-    creator: '@charles.unemployed',
-    path: '/assets/aistudio/ed7b7b3846dde5533457d5fffa92f6fa_b8a1ac68.mp4',
-    summary: 'Delete filler badges, drop redundant labels, unitalicize random words, mono only where needed, inner radius = outer - padding, tabular nums, and more.'
-  },
-  {
     id: 'video-backgrounds-22',
     title: '22 Backgrounds to Make Designs Less Flat',
     creator: '@charles.unemployed',
     path: '/assets/aistudio/17679cdeb42247d4a06fb8b16ee6adef_ea3ae57b.mp4',
     summary: 'Felt texture, fluted glass, thermal gradients, water ripples, speckled graphite, blueprint grids, halftone, ASCII & pixels, and more.'
-  },
-  {
-    id: 'video-legal-20',
-    title: '20 Things to Have Claude Do So Your App Doesn’t Get Sued',
-    creator: '@cooked_dev_',
-    path: '/assets/aistudio/8779dd7d7704205de13f21a796a409d1_87d9592b.mp4',
-    summary: 'Privacy policy, terms, refund policy, cookie consent, no dark patterns, WCAG contrast, alt text, keyboard nav, and data deletion.'
   }
 ];
 
@@ -106,6 +98,7 @@ export default function App() {
   const [selectedPosture, setSelectedPosture] = useState<'All' | 'dark' | 'light'>('All');
   const [selectedCreator, setSelectedCreator] = useState<string>('All');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [heroComparisonMode, setHeroComparisonMode] = useState<'chromakit' | 'slop'>('chromakit');
   const [activeTexture, setActiveTexture] = useState<{
     css: string;
     name: string;
@@ -135,6 +128,29 @@ export default function App() {
       navigator.clipboard.writeText(text).catch(() => {});
     }
     triggerToast(`Copied ${label}`);
+  };
+
+  const handleDownloadRepoFile = (fileId: RepoFileId) => {
+    const files = generateRepoFiles(activePalette, 'all');
+    const target = files.find((f) => f.id === fileId);
+    if (!target) return;
+    const blob = new Blob([target.content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = target.filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    triggerToast(`Downloaded ${target.filename}`);
+  };
+
+  const handleCopyRepoFile = (fileId: RepoFileId) => {
+    const files = generateRepoFiles(activePalette, 'all');
+    const target = files.find((f) => f.id === fileId);
+    if (!target) return;
+    handleCopyText(target.content, target.filename);
   };
 
   const handleSwapRoles = (indexA: number, indexB: number) => {
@@ -192,22 +208,6 @@ export default function App() {
     triggerToast(`Applied "${name}" overlay to Live Mockup Stage`);
   };
 
-  const handleQuickDownloadPushScript = () => {
-    const files = generateRepoFiles(activePalette, 'all');
-    const script = files.find((f) => f.id === 'push-to-github.sh');
-    if (!script) return;
-    const blob = new Blob([script.content], { type: 'text/x-shellscript;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'push-to-github.sh';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    triggerToast('Downloaded push-to-github.sh (5 Pages + 24 Palettes)');
-  };
-
   const filteredPalettes = useMemo(() => {
     return EXTRACTED_PALETTES.filter((p) => {
       if (selectedCategory !== 'All' && p.category !== selectedCategory) return false;
@@ -255,7 +255,7 @@ export default function App() {
                 : ''
             }`}
           >
-            5 Web Pages
+            5 Live Websites
           </button>
           <button
             type="button"
@@ -266,7 +266,7 @@ export default function App() {
                 : ''
             }`}
           >
-            24 Palettes
+            24 Color Systems
           </button>
           <button
             type="button"
@@ -278,17 +278,6 @@ export default function App() {
             }`}
           >
             Unslop &amp; Backgrounds
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveSection('repo')}
-            className={`hover:text-[#F4F1EA] transition-colors whitespace-nowrap shrink-0 pb-0.5 ${
-              activeSection === 'repo'
-                ? 'text-[#F4F1EA] underline underline-offset-8 decoration-[#FF4D1F] decoration-2'
-                : ''
-            }`}
-          >
-            GitHub Push
           </button>
           <button
             type="button"
@@ -307,16 +296,10 @@ export default function App() {
         <div className="flex items-center gap-3 shrink-0">
           <button
             type="button"
-            onClick={() => {
-              if (activeSection === 'repo') {
-                handleQuickDownloadPushScript();
-              } else {
-                setActiveSection('repo');
-              }
-            }}
+            onClick={() => handleCopyRepoFile('SKILL.md')}
             className="px-4 py-2 text-xs font-semibold text-white bg-[#FF4D1F] rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap shrink-0"
           >
-            Push to GitHub
+            Copy SKILL.md
           </button>
         </div>
       </header>
@@ -324,10 +307,9 @@ export default function App() {
       {/* Mobile Navigation Bar */}
       <div className="flex md:hidden items-center gap-2 overflow-x-auto px-6 py-2.5 border-b border-[#F4F1EA]/10 bg-[#16161A]">
         {[
-          { id: 'showcase', label: '5 Web Pages' },
-          { id: 'palettes', label: '24 Palettes' },
+          { id: 'showcase', label: '5 Live Websites' },
+          { id: 'palettes', label: '24 Color Systems' },
           { id: 'guides', label: 'Unslop & Backgrounds' },
-          { id: 'repo', label: 'GitHub Push' },
           { id: 'sources', label: 'Source Videos' }
         ].map((tab) => (
           <button
@@ -346,7 +328,212 @@ export default function App() {
       </div>
 
       {/* Main Content Container (1440px baseline) */}
-      <main id="top" className="flex-1 max-w-[1440px] w-full mx-auto px-6 lg:px-10 py-8 space-y-10">
+      <main id="top" className="flex-1 max-w-[1440px] w-full mx-auto px-6 lg:px-10 py-8 space-y-12">
+        {/* HIGH-CONVICTION OPEN-SOURCE HERO: WHY DEVELOPERS & AI AGENTS USE CHROMAKIT */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pb-10 border-b border-[#F4F1EA]/10">
+          {/* Left 7 Cols: Value Proposition & Instant Agent Install Buttons */}
+          <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
+            <div>
+              <div className="flex flex-wrap items-center gap-2 text-xs text-[#9A9890] font-mono tabular-nums">
+                <span>OPEN-SOURCE DESIGN SYSTEM REPOSITORY</span>
+                <span aria-hidden="true">·</span>
+                <span>100% FREE MIT LICENSE</span>
+                <span aria-hidden="true">·</span>
+                <span>BUILT FOR HUMANS &amp; AI AGENTS</span>
+              </div>
+
+              <h1 className="mt-3 text-3xl sm:text-5xl font-display font-bold tracking-tight text-[#F4F1EA] leading-[1.06]">
+                Stop AI agents from shipping generic purple gradients.{' '}
+                <span className="text-[#FF4D1F]">Give every colour a job.</span>
+              </h1>
+
+              <p className="mt-4 text-sm sm:text-base text-[#9A9890] max-w-2xl leading-relaxed">
+                When you ask Claude Code, Cursor, or Windsurf to build a UI without design guardrails, you get glowing indigo blobs, competing CTA buttons, and low-contrast grey text. <strong className="text-[#F4F1EA]">ChromaKit</strong> is a drop-in open-source repository containing <strong className="text-[#F4F1EA]">24 human-curated 60-30-10 color systems</strong>, <strong className="text-[#F4F1EA]">5 full production websites</strong>, and <strong className="text-[#F4F1EA]">20 anti-slop rules</strong> that your coding agent reads automatically.
+              </p>
+            </div>
+
+            {/* Primary & Secondary Action Buttons */}
+            <div className="space-y-4">
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => handleCopyRepoFile('SKILL.md')}
+                  className="px-5 py-3 rounded-lg bg-[#FF4D1F] text-white text-sm font-semibold hover:opacity-90 transition-opacity flex items-center gap-2 whitespace-nowrap shrink-0"
+                >
+                  <Copy className="w-4 h-4" />
+                  <span>Copy SKILL.md for Agents</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleCopyRepoFile('CLAUDE.md')}
+                  className="px-4 py-3 rounded-lg bg-[#16161A] border border-[#F4F1EA]/20 hover:border-[#F4F1EA]/50 text-sm font-medium text-[#F4F1EA] flex items-center gap-2 transition-colors whitespace-nowrap shrink-0"
+                >
+                  <Terminal className="w-4 h-4" />
+                  <span>Copy CLAUDE.md</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleCopyRepoFile('.cursorrules')}
+                  className="px-4 py-3 rounded-lg bg-[#16161A] border border-[#F4F1EA]/20 hover:border-[#F4F1EA]/50 text-sm font-medium text-[#F4F1EA] flex items-center gap-2 transition-colors whitespace-nowrap shrink-0"
+                >
+                  <Code2 className="w-4 h-4" />
+                  <span>Copy .cursorrules</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleDownloadRepoFile('tokens.json')}
+                  className="px-4 py-3 rounded-lg bg-[#16161A] border border-[#F4F1EA]/20 hover:border-[#F4F1EA]/50 text-sm font-medium text-[#F4F1EA] flex items-center gap-2 transition-colors whitespace-nowrap shrink-0"
+                >
+                  <Download className="w-4 h-4 text-[#D4FF3A]" />
+                  <span>Download tokens.json</span>
+                </button>
+              </div>
+
+              {/* Quick Section Jump Bar */}
+              <div className="flex flex-wrap items-center gap-2 pt-2 text-xs">
+                <span className="text-[#9A9890] font-mono">Jump to:</span>
+                <button
+                  type="button"
+                  onClick={() => setActiveSection('showcase')}
+                  className={`px-3 py-1.5 rounded-md border font-medium transition-colors ${
+                    activeSection === 'showcase'
+                      ? 'bg-[#F4F1EA] text-[#0E0E10] border-[#F4F1EA]'
+                      : 'bg-[#16161A] text-[#F4F1EA] border-[#F4F1EA]/15 hover:border-[#F4F1EA]/40'
+                  }`}
+                >
+                  1. Explore 5 Live Websites
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveSection('palettes')}
+                  className={`px-3 py-1.5 rounded-md border font-medium transition-colors ${
+                    activeSection === 'palettes'
+                      ? 'bg-[#F4F1EA] text-[#0E0E10] border-[#F4F1EA]'
+                      : 'bg-[#16161A] text-[#F4F1EA] border-[#F4F1EA]/15 hover:border-[#F4F1EA]/40'
+                  }`}
+                >
+                  2. Browse All 24 Palettes
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveSection('guides')}
+                  className={`px-3 py-1.5 rounded-md border font-medium transition-colors ${
+                    activeSection === 'guides'
+                      ? 'bg-[#F4F1EA] text-[#0E0E10] border-[#F4F1EA]'
+                      : 'bg-[#16161A] text-[#F4F1EA] border-[#F4F1EA]/15 hover:border-[#F4F1EA]/40'
+                  }`}
+                >
+                  3. 20 Unslop Rules &amp; 22 Backgrounds
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Right 5 Cols: Interactive Proof Card — "Without Repo (AI Slop)" vs "With ChromaKit Repo" */}
+          <div className="lg:col-span-5 rounded-2xl border border-[#F4F1EA]/15 bg-[#16161A] p-2 flex flex-col justify-between">
+            <div className="rounded-lg bg-[#0E0E10] p-5 h-full flex flex-col justify-between space-y-4">
+              <div className="flex items-center justify-between gap-2 border-b border-[#F4F1EA]/10 pb-3">
+                <span className="text-xs font-mono text-[#9A9890]">
+                  LIVE AGENT OUTPUT COMPARISON
+                </span>
+                <div className="inline-flex rounded-lg bg-[#16161A] p-1 border border-[#F4F1EA]/10">
+                  <button
+                    type="button"
+                    onClick={() => setHeroComparisonMode('slop')}
+                    className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
+                      heroComparisonMode === 'slop'
+                        ? 'bg-[#F4F1EA] text-[#0E0E10]'
+                        : 'text-[#9A9890] hover:text-[#F4F1EA]'
+                    }`}
+                  >
+                    ✕ Without Repo
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setHeroComparisonMode('chromakit')}
+                    className={`px-2.5 py-1 rounded text-xs font-semibold transition-colors ${
+                      heroComparisonMode === 'chromakit'
+                        ? 'bg-[#FF4D1F] text-white'
+                        : 'text-[#9A9890] hover:text-[#F4F1EA]'
+                    }`}
+                  >
+                    ✓ With ChromaKit
+                  </button>
+                </div>
+              </div>
+
+              {heroComparisonMode === 'slop' ? (
+                <div className="rounded-xl p-5 border border-purple-500/40 bg-gradient-to-br from-indigo-950 via-purple-950 to-slate-900 space-y-3">
+                  <div className="text-[11px] font-mono text-purple-300">
+                    ✕ DEFAULT AI AGENT OUTPUT (NO GUARDRAILS)
+                  </div>
+                  <h3 className="text-lg font-sans font-bold text-white">
+                    Supercharge your *next-gen* workflow!
+                  </h3>
+                  <p className="text-xs text-slate-400">
+                    Three competing primary buttons, random italicized words, and generic purple gradients:
+                  </p>
+                  <div className="grid grid-cols-2 gap-2 pt-1">
+                    <button type="button" className="py-2 px-3 rounded-lg bg-purple-600 text-white text-xs font-semibold">
+                      Get Started
+                    </button>
+                    <button type="button" className="py-2 px-3 rounded-lg bg-indigo-600 text-white text-xs font-semibold">
+                      Learn More
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="rounded-xl p-5 border border-[#F4F1EA]/15 bg-[#16161A] space-y-3">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-[#D4FF3A]">
+                    <span>✓ CHROMAKIT AGENT OUTPUT (60-30-10)</span>
+                    <span className="tabular-nums">16.8:1 AAA</span>
+                  </div>
+                  <h3 className="text-lg font-display font-bold text-[#F4F1EA]">
+                    Cited answers from production telemetry.
+                  </h3>
+                  <p className="text-xs text-[#9A9890] leading-relaxed">
+                    60% Ink canvas, 30% Bone typography, 10% Flame action spent strictly once on the primary next step:
+                  </p>
+                  <div className="grid grid-cols-2 gap-2 pt-1">
+                    <button
+                      type="button"
+                      onClick={() => handleCopyRepoFile('SKILL.md')}
+                      className="py-2 px-3 rounded-lg bg-[#FF4D1F] text-white text-xs font-semibold"
+                    >
+                      Copy SKILL.md
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setActiveSection('repo')}
+                      className="py-2 px-3 rounded-lg border border-[#F4F1EA]/25 text-[#F4F1EA] text-xs font-medium"
+                    >
+                      View Repo Files
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              <div className="flex items-center justify-between text-xs text-[#9A9890] font-mono pt-1">
+                <span>Works with Claude, Cursor, Windsurf</span>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setHeroComparisonMode((prev) =>
+                      prev === 'chromakit' ? 'slop' : 'chromakit'
+                    )
+                  }
+                  className="text-[#F4F1EA] underline underline-offset-4"
+                >
+                  Toggle Comparison
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* SECTION 0: 5 INTERACTIVE WEB PAGES SHOWCASE */}
         {activeSection === 'showcase' && (
           <ShowcasePagesView
@@ -618,7 +805,7 @@ export default function App() {
                         </div>
 
                         <span className="text-[11px] font-semibold text-[#FF4D1F] whitespace-nowrap shrink-0">
-                          {isSelected ? 'Active ✓' : 'Preview →'}
+                          {isSelected ? 'Active ✓' : 'Test Live →'}
                         </span>
                       </div>
                     </div>
@@ -651,7 +838,7 @@ export default function App() {
           <div className="space-y-8">
             <div className="border-b border-[#F4F1EA]/10 pb-5">
               <div className="text-xs text-[#9A9890] font-mono">
-                10 UPLOADED VIDEOS + 4 SPECIFICATION SLIDES
+                8 UPLOADED VIDEOS + 4 SPECIFICATION SLIDES
               </div>
               <h2 className="mt-1 text-2xl font-display font-semibold text-[#F4F1EA]">
                 Original Reference Media Library
@@ -719,22 +906,22 @@ export default function App() {
       <footer className="mt-16 border-t border-[#F4F1EA]/10 py-8 px-6 lg:px-10 text-xs text-[#9A9890]">
         <div className="max-w-[1440px] mx-auto flex flex-wrap items-center justify-between gap-4">
           <div>
-            ChromaKit Studio · 5 Showcase Web Pages · 24 Extracted Color Combinations · 60-30-10 Architecture
+            ChromaKit Open-Source Design System · 100% Free MIT License · Built for Developers &amp; AI Coding Agents
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-5">
             <button
               type="button"
               onClick={() => setActiveSection('showcase')}
               className="hover:text-[#F4F1EA] transition-colors"
             >
-              5 Web Pages
+              5 Live Websites
             </button>
             <button
               type="button"
               onClick={() => setActiveSection('palettes')}
               className="hover:text-[#F4F1EA] transition-colors"
             >
-              24 Palettes
+              24 Color Systems
             </button>
             <button
               type="button"
@@ -745,10 +932,10 @@ export default function App() {
             </button>
             <button
               type="button"
-              onClick={() => setActiveSection('repo')}
+              onClick={() => setActiveSection('sources')}
               className="hover:text-[#F4F1EA] transition-colors"
             >
-              GitHub Push
+              Source Videos
             </button>
           </div>
         </div>
