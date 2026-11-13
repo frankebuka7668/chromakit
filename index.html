@@ -1,21 +1,161 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ChromaKit — Color Systems &amp; Anti-Slop Repo Studio</title>
-    <meta name="description" content="Curated color combinations, 60-30-10 role architecture, UI unslop rules, and background textures compiled into GitHub repository files and AI coding agent skills." />
-    <meta property="og:title" content="ChromaKit — Color Systems &amp; Anti-Slop Repo Studio" />
-    <meta property="og:description" content="Curated color combinations, 60-30-10 role architecture, UI unslop rules, and background textures compiled into GitHub repository files and AI coding agent skills." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#10110f" />
+    <meta name="description" content="Explore five standalone ChromaKit showcase websites, each built around a distinct 60–30–10 color combination." />
+    <title>ChromaKit — Five Live Websites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: 'DM Sans', sans-serif;
+        background: #10110f;
+        color: #f4f1ea;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-width: 320px; min-height: 100vh; }
+      a { color: inherit; }
+      .shell { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+      .topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 26px 0; border-bottom: 1px solid #ffffff1c; }
+      .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -.04em; }
+      .brand-mark { display: grid; width: 28px; height: 28px; place-items: center; border-radius: 8px; color: #10110f; background: #ff5b35; font-size: 14px; }
+      .top-note { color: #aaa99f; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+      .hero { padding: clamp(54px, 9vw, 106px) 0 44px; }
+      .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #c8c6ba; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+      .eyebrow::before { content: ''; width: 22px; height: 2px; background: #ff5b35; }
+      h1 { max-width: 820px; margin: 19px 0 16px; font-family: 'Space Grotesk', sans-serif; font-size: clamp(42px, 7vw, 78px); line-height: .99; letter-spacing: -.065em; }
+      h1 span { color: #ff5b35; }
+      .intro { max-width: 640px; margin: 0; color: #aaa99f; font-size: clamp(15px, 1.8vw, 18px); line-height: 1.7; }
+      .collection-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; padding: 28px 0 17px; border-bottom: 1px solid #ffffff1c; }
+      .collection-head h2 { margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 20px; letter-spacing: -.03em; }
+      .count { color: #aaa99f; font-family: 'Space Grotesk', sans-serif; font-size: 12px; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 19px 0 68px; }
+      .card { display: flex; min-height: 276px; flex-direction: column; padding: 24px; border: 1px solid #ffffff20; border-radius: 16px; background: linear-gradient(145deg, #1a1b18, #141512 72%); transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+      .card:hover { transform: translateY(-3px); border-color: #ff5b3580; background: linear-gradient(145deg, #20211d, #171815 72%); }
+      .card-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+      .number { color: #ff7958; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .12em; }
+      .industry { color: #aaa99f; font-size: 11px; text-align: right; }
+      h3 { margin: 28px 0 7px; font-family: 'Space Grotesk', sans-serif; font-size: clamp(21px, 2.6vw, 27px); line-height: 1.15; letter-spacing: -.045em; }
+      .description { margin: 0; color: #aaa99f; font-size: 13px; line-height: 1.55; }
+      .palette-label { margin-top: 22px; color: #77786f; font-size: 10px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+      .swatches { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+      .swatch { display: inline-flex; align-items: center; gap: 7px; padding: 6px 9px 6px 6px; border: 1px solid #ffffff1a; border-radius: 999px; color: #deddd5; font-size: 10px; white-space: nowrap; }
+      .dot { width: 13px; height: 13px; flex: 0 0 13px; border: 1px solid #ffffff55; border-radius: 50%; }
+      .card-link { display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; margin-top: auto; padding-top: 23px; color: #f4f1ea; font-size: 12px; font-weight: 700; text-decoration: none; }
+      .card-link span { display: inline-grid; width: 25px; height: 25px; place-items: center; border-radius: 50%; background: #ff5b35; color: #10110f; font-size: 15px; transition: transform .2s ease; }
+      .card-link:hover span { transform: translateX(3px); }
+      footer { display: flex; justify-content: space-between; gap: 14px; padding: 20px 0 28px; border-top: 1px solid #ffffff1c; color: #77786f; font-size: 11px; }
+      @media (max-width: 700px) {
+        .shell { width: min(100% - 32px, 560px); }
+        .topbar { padding: 20px 0; }
+        .top-note { max-width: 150px; text-align: right; font-size: 9px; }
+        .hero { padding-top: 58px; }
+        .grid { grid-template-columns: 1fr; gap: 12px; padding-bottom: 44px; }
+        .card { min-height: 258px; padding: 21px; }
+        footer { flex-direction: column; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      }
+    </style>
   </head>
-  <body class="bg-[#0E0E10] text-[#F4F1EA] antialiased selection:bg-[#FF4D1F] selection:text-[#0E0E10]">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="ChromaKit home"><span class="brand-mark" aria-hidden="true">C</span>ChromaKit</a>
+        <div class="top-note">A collection of five live websites</div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="page-title">
+          <div class="eyebrow">The ChromaKit showcase</div>
+          <h1 id="page-title">Five live sites.<br /><span>Five color worlds.</span></h1>
+          <p class="intro">Choose a finished, interactive website to explore. Each one pairs a distinct product concept with its own considered color combination—no repository browser or source files, just the five showcases.</p>
+        </section>
+
+        <section aria-labelledby="collection-title">
+          <div class="collection-head">
+            <h2 id="collection-title">Explore the websites</h2>
+            <div class="count">01 — 05&nbsp; / &nbsp;FIVE SHOWCASES</div>
+          </div>
+          <div class="grid">
+            <article class="card">
+              <div class="card-top"><span class="number">WEBSITE 01</span><span class="industry">Optical &amp; audio hardware</span></div>
+              <h3>Leica &amp; Mono Flagship</h3>
+              <p class="description">A precision rangefinder, direct-drive turntable, and technical spec bench.</p>
+              <div class="palette-label">Ice Blue · Midnight Ink · Vermilion</div>
+              <div class="swatches" aria-label="Color combination: Ice Blue, Midnight Ink, and Vermilion">
+                <span class="swatch"><i class="dot" style="background:#D5E5F0"></i>Ice Blue</span>
+                <span class="swatch"><i class="dot" style="background:#081D2B"></i>Midnight Ink</span>
+                <span class="swatch"><i class="dot" style="background:#EE4222"></i>Vermilion</span>
+              </div>
+              <a class="card-link" href="/01-leica-mono-hardware.html">Open website <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="card">
+              <div class="card-top"><span class="number">WEBSITE 02</span><span class="industry">Developer SaaS &amp; security</span></div>
+              <h3>Guardbase AI Security</h3>
+              <p class="description">An AI runtime firewall with a live prompt-injection simulator and security telemetry.</p>
+              <div class="palette-label">Paper White · Ink Black · Cornflower</div>
+              <div class="swatches" aria-label="Color combination: Paper White, Ink Black, and Cornflower Blue">
+                <span class="swatch"><i class="dot" style="background:#FFFFFF"></i>Paper White</span>
+                <span class="swatch"><i class="dot" style="background:#0B0B0B"></i>Ink Black</span>
+                <span class="swatch"><i class="dot" style="background:#5482FF"></i>Cornflower</span>
+              </div>
+              <a class="card-link" href="/02-guardbase-ai-security.html">Open website <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="card">
+              <div class="card-top"><span class="number">WEBSITE 03</span><span class="industry">Electric mobility</span></div>
+              <h3>Motto M-01 Mobility</h3>
+              <p class="description">An urban electric cruiser customizer, range calculator, and city ride planner.</p>
+              <div class="palette-label">Almond Cream · Petrol Teal · Violet</div>
+              <div class="swatches" aria-label="Color combination: Almond Cream, Petrol Teal, and Electric Violet">
+                <span class="swatch"><i class="dot" style="background:#F3ECC8"></i>Almond Cream</span>
+                <span class="swatch"><i class="dot" style="background:#0D5258"></i>Petrol Teal</span>
+                <span class="swatch"><i class="dot" style="background:#A862F7"></i>Electric Violet</span>
+              </div>
+              <a class="card-link" href="/03-motto-electric-mobility.html">Open website <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="card">
+              <div class="card-top"><span class="number">WEBSITE 04</span><span class="industry">Functional beverages</span></div>
+              <h3>Olipop &amp; Zest Beverage</h3>
+              <p class="description">A bright botanical soda storefront with a flavor lab and custom-box builder.</p>
+              <div class="palette-label">Lemon · Cobalt · Hot Pink</div>
+              <div class="swatches" aria-label="Color combination: Lemon Yellow, Cobalt Blue, and Hot Pink">
+                <span class="swatch"><i class="dot" style="background:#F4E452"></i>Lemon Yellow</span>
+                <span class="swatch"><i class="dot" style="background:#0D32B8"></i>Cobalt Blue</span>
+                <span class="swatch"><i class="dot" style="background:#FF318C"></i>Hot Pink</span>
+              </div>
+              <a class="card-link" href="/04-olipop-zest-beverage.html">Open website <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="card">
+              <div class="card-top"><span class="number">WEBSITE 05</span><span class="industry">Lighting &amp; industrial design</span></div>
+              <h3>Kontour &amp; Arca Studio</h3>
+              <p class="description">An architectural lighting studio with a Kelvin light lab and material dossier.</p>
+              <div class="palette-label">Jet Black · Soft White · Flame</div>
+              <div class="swatches" aria-label="Color combination: Jet Black, Soft White, and Flame Orange">
+                <span class="swatch"><i class="dot" style="background:#0B0B0B"></i>Jet Black</span>
+                <span class="swatch"><i class="dot" style="background:#F3F3F2"></i>Soft White</span>
+                <span class="swatch"><i class="dot" style="background:#FF4D00"></i>Flame Orange</span>
+              </div>
+              <a class="card-link" href="/05-kontour-arca-studio.html">Open website <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer><span>ChromaKit · Five standalone showcase websites</span><span>Each link opens a finished page</span></footer>
+    </div>
   </body>
 </html>
-
