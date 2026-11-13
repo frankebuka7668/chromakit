@@ -1,17 +1,31 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
+import {cp, mkdir} from 'node:fs/promises';
 import path from 'path';
 import {defineConfig} from 'vite';
 
+function copyMappedMediaAssets() {
+  return {
+    name: 'copy-mapped-media-assets',
+    apply: 'build' as const,
+    async closeBundle() {
+      const source = path.resolve(__dirname, 'public/assets/aistudio');
+      const destination = path.resolve(__dirname, 'dist/assets/aistudio');
+      await mkdir(path.dirname(destination), {recursive: true});
+      await cp(source, destination, {recursive: true});
+    },
+  };
+}
+
 export default defineConfig(() => {
   return {
-    // Publish the five showcase pages and README-mapped media files only.
-    publicDir: 'public',
+    // Keep the five showcase HTML files at root-level routes.
+    publicDir: 'public/pages',
     preview: {
       // Arena assigns a new preview hostname per session; allow only its domain suffix.
       allowedHosts: ['.e2b.app'],
     },
-    plugins: [react(), tailwindcss()],
+    plugins: [react(), tailwindcss(), copyMappedMediaAssets()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
