@@ -5,11 +5,22 @@ import {
   EXTRACTED_PALETTES,
   getContrastWarning,
   getPreciseContrastRatio,
-  getReadableTextColor
+  getReadableTextColor,
+  hexToRgb
 } from '../src/data/palettes';
 import { copyTextWithFallback, downloadBlob, type DownloadEnvironment } from '../src/utils/browser';
 import { generateRepoFiles } from '../src/utils/repoGenerator';
 import { SHOWCASE_PAGES } from '../src/data/showcasePages';
+
+test('hexadecimal parsing accepts three and six digit RGB and rejects malformed and alpha input', () => {
+  assert.deepEqual(hexToRgb('#FFF'), { r: 255, g: 255, b: 255 });
+  assert.deepEqual(hexToRgb('#FFFFFF'), { r: 255, g: 255, b: 255 });
+  assert.deepEqual(hexToRgb('#000000'), { r: 0, g: 0, b: 0 });
+  assert.deepEqual(hexToRgb('#5482FF'), { r: 84, g: 130, b: 255 });
+  for (const value of ['', 'FFFFFF', '#GGG', '#12', '#1234', '#11223344']) {
+    assert.throws(() => hexToRgb(value), /Invalid hexadecimal colour/);
+  }
+});
 
 test('readable text selection compares both foreground candidates by contrast', () => {
   for (const color of ['#000000', '#FFFFFF', '#777777', '#FF318C', '#D5E5F0']) {
@@ -53,6 +64,7 @@ test('all five static showcases use canonical palette tokens and swatches', () =
     const action = palette.colors.find((color) => color.role === 'action');
     assert.ok(background && surface && action);
     assert.ok(html.includes(`--bg:${background.hex};--ink:${surface.hex};--accent:${action.hex};`));
+    assert.ok(html.includes(`<meta name="theme-color" content="${background.hex}" />`), `${filename} has stale background theme color`);
   }
 });
 
