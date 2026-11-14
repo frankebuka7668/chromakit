@@ -1,23 +1,29 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import test from 'node:test';
 import {
   EXTRACTED_PALETTES,
   getContrastWarning,
   getPreciseContrastRatio,
   getReadableTextColor,
-  hexToRgb
+  hexToRgb,
+  isValidHexColor
 } from '../src/data/palettes';
 import { copyTextWithFallback, downloadBlob, type DownloadEnvironment } from '../src/utils/browser';
 import { generateRepoFiles } from '../src/utils/repoGenerator';
 import { SHOWCASE_PAGES } from '../src/data/showcasePages';
+import { synchronizeShowcaseFiles } from '../scripts/showcase-sync-lib';
 
 test('hexadecimal parsing accepts three and six digit RGB and rejects malformed and alpha input', () => {
+  for (const value of ['#ABC', '#abc', '#ABCDEF', '#abcdef', '#aBc', '#a1B2c3']) assert.equal(isValidHexColor(value), true, value);
   assert.deepEqual(hexToRgb('#FFF'), { r: 255, g: 255, b: 255 });
   assert.deepEqual(hexToRgb('#FFFFFF'), { r: 255, g: 255, b: 255 });
   assert.deepEqual(hexToRgb('#000000'), { r: 0, g: 0, b: 0 });
   assert.deepEqual(hexToRgb('#5482FF'), { r: 84, g: 130, b: 255 });
-  for (const value of ['', 'FFFFFF', '#GGG', '#12', '#1234', '#11223344']) {
+  for (const value of ['', '   ', 'FFFFFF', '#GGG', '#12', '#1234', '#1234567', '#11223344', '#FFF8', '#12zz34', '#12GGGG']) {
+    assert.equal(isValidHexColor(value), false);
     assert.throws(() => hexToRgb(value), /Invalid hexadecimal colour/);
   }
 });
@@ -160,4 +166,72 @@ test('downloads defer independent URL cleanup for repeated clicks', () => {
   scheduled.forEach((entry) => entry.callback());
   assert.deepEqual(revoked, ['blob:test-1', 'blob:test-2', 'blob:test-3']);
   assert.equal(clicked.some((url) => url.includes('blob:test-1')), true);
+});
+
+test('showcase synchronizer replaces exact CSS values, preserves unrelated content, and is idempotent', () => {
+  const root = mkdtempSync(path.join(os.tmpdir(), 'chromakit-sync-'));
+  try {
+    mkdirSync(path.join(root, 'public/pages'), { recursive: true });
+    const page = SHOWCASE_PAGES[0];
+    const palette = EXTRACTED_PALETTES.find((item) => item.id === page.defaultPaletteId)!;
+    const html = '<!doctype html><style>:root{--bg:#000000;--ink:#111111;--accent:#222222;--accent-ink:#000000;--muted:old;--line:old;--card:old;--card-ink:old;--font:old;--display:old;--mono:old}</style><p>keep this</p><meta name="theme-color" content="#000000" /><section><div class="palette-row"><old></div></section>';
+    const target = path.join(root, 'public/pages', path.basename(page.staticUrl));
+    writeFileSync(target, html);
+    const messages = { log: () => {}, error: () => {} };
+    assert.equal(synchronizeShowcaseFiles({ root, pages: [page], palettes: [palette], io: messages }), true);
+    const generated = readFileSync(target, 'utf8');
+    assert.ok(generated.includes(`--bg:${palette.colors.find((c) => c.role === 'background')!.hex}`));
+    assert.ok(generated.includes('<p>keep this</p>'));
+    assert.equal(synchronizeShowcaseFiles({ root, pages: [page], palettes: [palette], io: messages }), true);
+    assert.equal(readFileSync(target, 'utf8'), generated);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
+test('showcase synchronizer validates missing, duplicate, and malformed declarations without writes', () => {
+  const root = mkdtempSync(path.join(os.tmpdir(), 'chromakit-invalid-sync-'));
+  try {
+    mkdirSync(path.join(root, 'public/pages'), { recursive: true });
+    const page = SHOWCASE_PAGES[0];
+    const palette = EXTRACTED_PALETTES.find((item) => item.id === page.defaultPaletteId)!;
+    const filename = path.basename(page.staticUrl);
+    assert.throws(() => synchronizeShowcaseFiles({ root, pages: [page], palettes: [palette] }), /target file.*does not exist/);
+    const good = '<style>:root{--bg:#000;--ink:#000;--accent:#000;--accent-ink:#000;--muted:x;--line:x;--card:x;--card-ink:x;--font:x;--display:x;--mono:x}</style><meta name="theme-color" content="#000000" /><section><div class="palette-row"><old></div></section>';
+    const target = path.join(root, 'public/pages', filename);
+    for (const broken of [good.replace('--bg:#000;', '--bg:#000;--bg:#111;'), good.replace('--bg:#000;', '--bg #000;')]) {
+      writeFileSync(target, broken);
+      assert.throws(() => synchronizeShowcaseFiles({ root, pages: [page], palettes: [palette] }), /--bg/);
+      assert.equal(readFileSync(target, 'utf8'), broken);
+    }
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
+test('failed showcase replacement throws without emitting a success message', () => {
+  const root = mkdtempSync(path.join(os.tmpdir(), 'chromakit-failure-sync-'));
+  try {
+    mkdirSync(path.join(root, 'public/pages'), { recursive: true });
+    const page = SHOWCASE_PAGES[0];
+    const palette = EXTRACTED_PALETTES.find((item) => item.id === page.defaultPaletteId)!;
+    const target = path.join(root, 'public/pages', path.basename(page.staticUrl));
+    writeFileSync(target, '<style>:root{--bg:#000;--ink:#000;--accent:#000;--accent-ink:#000;--muted:x;--line:x;--card:x;--card-ink:x;--font:x;--display:x}</style><meta name="theme-color" content="#000000" /><section><div class="palette-row"></div></section>');
+    const success: string[] = [];
+    assert.throws(() => synchronizeShowcaseFiles({ root, pages: [page], palettes: [palette], io: { log: (message) => success.push(message), error: () => {} } }), /--mono/);
+    assert.deepEqual(success, []);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
+test('showcase check mode reports stale variables, returns failure, and never modifies files', () => {
+  const root = mkdtempSync(path.join(os.tmpdir(), 'chromakit-check-sync-'));
+  try {
+    mkdirSync(path.join(root, 'public/pages'), { recursive: true });
+    const page = SHOWCASE_PAGES[0];
+    const palette = EXTRACTED_PALETTES.find((item) => item.id === page.defaultPaletteId)!;
+    const original = '<style>:root{--bg:#000;--ink:#000;--accent:#000;--accent-ink:#000;--muted:x;--line:x;--card:x;--card-ink:x;--font:x;--display:x;--mono:x}</style><meta name="theme-color" content="#000000" /><section><div class="palette-row"><old></div></section>';
+    const target = path.join(root, 'public/pages', path.basename(page.staticUrl));
+    writeFileSync(target, original);
+    const errors: string[] = [];
+    assert.equal(synchronizeShowcaseFiles({ root, pages: [page], palettes: [palette], checkOnly: true, io: { log: () => {}, error: (message) => errors.push(message) } }), false);
+    assert.match(errors.join('\n'), /stale.*--bg=/);
+    assert.match(errors.join('\n'), /--ink=/);
+    assert.equal(readFileSync(target, 'utf8'), original);
+  } finally { rmSync(root, { recursive: true, force: true }); }
 });

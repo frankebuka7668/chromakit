@@ -4,7 +4,8 @@ import {
   getContrastRatio,
   getPreciseContrastRatio,
   getReadableTextColor,
-  getWcagRating
+  getWcagRating,
+  isValidHexColor
 } from '../data/palettes';
 import {
   BACKGROUND_RECIPES,
@@ -180,6 +181,9 @@ export function generateRepoFiles(
   scope: 'all' | 'active',
   activeColors: ColorPalette['colors'] = activePalette.colors
 ): GeneratedRepoFile[] {
+  for (const color of activeColors) {
+    if (!isValidHexColor(color.hex)) throw new TypeError(`Cannot export invalid hex color for ${color.name}: ${color.hex}`);
+  }
   // Apply user edits to cloned objects; never mutate the canonical palette catalog.
   const exportActivePalette: ColorPalette = {
     ...activePalette,

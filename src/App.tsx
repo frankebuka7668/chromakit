@@ -15,7 +15,8 @@ import {
   PaletteColor,
   getContrastRatio,
   getPreciseContrastRatio,
-  getWcagRating
+  getWcagRating,
+  isValidHexColor
 } from './data/palettes';
 import { LiveMockupStage } from './components/LiveMockupStage';
 import { DesignGuidesView } from './components/DesignGuidesView';
@@ -174,6 +175,10 @@ export default function App() {
   };
 
   const handleUpdateHex = (index: number, newHex: string) => {
+    if (!isValidHexColor(newHex)) {
+      triggerToast('Enter a valid hex color in #RGB or #RRGGBB format.');
+      return;
+    }
     const current = [...activeColors];
     if (!current[index]) return;
     current[index] = {
