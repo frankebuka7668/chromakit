@@ -15,6 +15,8 @@ import {
   ColorPalette,
   PaletteColor,
   getContrastRatio,
+  getContrastWarning,
+  getPreciseContrastRatio,
   getReadableTextColor,
   getWcagRating
 } from '../data/palettes';
@@ -55,8 +57,14 @@ export const LiveMockupStage: React.FC<LiveMockupStageProps> = ({
 
   const actionTextColor = getReadableTextColor(action.hex);
   const bgToSurfaceRatio = getContrastRatio(bg.hex, surface.hex);
+  const bgToSurfacePrecise = getPreciseContrastRatio(bg.hex, surface.hex);
   const bgToActionRatio = getContrastRatio(bg.hex, action.hex);
-  const bgWcag = getWcagRating(bgToSurfaceRatio);
+  const actionTextRatio = getPreciseContrastRatio(action.hex, actionTextColor);
+  const bgWcag = getWcagRating(bgToSurfacePrecise);
+  const contrastWarnings = [
+    getContrastWarning(bgToSurfacePrecise),
+    getContrastWarning(actionTextRatio)
+  ].filter((warning): warning is string => warning !== null);
 
   const isModified = customColors.some((c, idx) => c.hex !== palette.colors[idx]?.hex);
 
@@ -86,6 +94,12 @@ export const LiveMockupStage: React.FC<LiveMockupStageProps> = ({
               {palette.name}
             </h2>
           </div>
+
+          {contrastWarnings.length > 0 && (
+            <p role="status" className="w-full rounded-md border border-amber-400/25 bg-amber-400/10 px-3 py-2 text-xs text-amber-200">
+              Contrast warning: {contrastWarnings.join(' ')}
+            </p>
+          )}
 
           {/* Interactive Template Switcher */}
           <div className="flex flex-wrap items-center gap-2">

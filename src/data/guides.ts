@@ -395,7 +395,7 @@ export const COMPLIANCE_CHECKS: ComplianceCheck[] = [
     index: 1,
     title: 'Privacy policy',
     pillar: 'Legal Policies',
-    whyItMatters: 'Mandatory under GDPR, CCPA, and app store guidelines whenever any user data or IP address is processed.',
+    whyItMatters: 'Where applicable privacy laws or platform rules require notice, explain the data actually processed, purposes, retention, rights, and contact details. Requirements vary by users’ locations, data, and service; this checklist is not legal advice.',
     claudePrompt: 'Generate a plain-English Privacy Policy route (/privacy) detailing exact data collected, retention periods, and third-party processors.'
   },
   {
@@ -409,28 +409,28 @@ export const COMPLIANCE_CHECKS: ComplianceCheck[] = [
     index: 3,
     title: 'Refund policy',
     pillar: 'Legal Policies',
-    whyItMatters: 'Prevents payment processor chargebacks and complies with consumer protection laws for SaaS and e-commerce.',
+    whyItMatters: 'Clear cancellation and refund terms help set customer expectations; required rights and permitted terms depend on the product, transaction, and applicable consumer-protection law.',
     claudePrompt: 'Add a transparent Refund & Cancellation Policy section explaining pro-rata refunds, trial windows, and how to cancel.'
   },
   {
     index: 4,
     title: 'Cookie policy',
     pillar: 'Legal Policies',
-    whyItMatters: 'Discloses essential auth cookies vs. analytics/marketing storage under ePrivacy and GDPR rules.',
+    whyItMatters: 'Describe cookies and similar storage accurately. Disclosure and consent rules vary by jurisdiction, storage purpose, and technology; separate strictly necessary storage from optional tracking where the applicable law requires it.',
     claudePrompt: 'Document all first-party and third-party cookies, localStorage keys, and session tokens in a dedicated Cookie Policy.'
   },
   {
     index: 5,
     title: 'Cookie consent banner',
     pillar: 'Privacy & Consent',
-    whyItMatters: 'Requires explicit opt-in before firing non-essential analytics or tracking scripts in regulated jurisdictions.',
+    whyItMatters: 'Some jurisdictions require prior consent for certain non-essential storage or tracking. Determine which rules apply to your audience and technologies; do not treat this checklist as jurisdiction-specific legal advice.',
     claudePrompt: 'Build a non-intrusive Cookie Consent bar with equal-weight "Accept Optional" and "Essential Only" buttons.'
   },
   {
     index: 6,
     title: 'Check form consents',
     pillar: 'Privacy & Consent',
-    whyItMatters: 'Pre-ticked marketing checkboxes violate GDPR; consent must be freely given, specific, and affirmative.',
+    whyItMatters: 'Where consent is the appropriate legal basis, it generally must meet the applicable requirements for being informed, specific, and freely given. Avoid preselected optional marketing choices and assess rules for each audience.',
     claudePrompt: 'Audit all signup and checkout forms to ensure marketing opt-in checkboxes default to unchecked (`defaultChecked={false}`).'
   },
   {
@@ -451,35 +451,35 @@ export const COMPLIANCE_CHECKS: ComplianceCheck[] = [
     index: 9,
     title: 'Remove dark patterns',
     pillar: 'Honest UX & Claims',
-    whyItMatters: 'FTC and EU Digital Services Act actively penalize roach-motel cancellations, confirmshaming, and hidden opt-outs.',
+    whyItMatters: 'Consumer-protection and platform rules in some jurisdictions restrict manipulative cancellation, confirmshaming, and hidden opt-out patterns. Design fair, reversible choices and check the requirements that apply to each market.',
     claudePrompt: 'Audit cancellation and downgrade flows so users can cancel in the same number of clicks as signing up, with zero confirmshaming copy.'
   },
   {
     index: 10,
     title: 'No hidden fees',
     pillar: 'Honest UX & Claims',
-    whyItMatters: 'Drip pricing (revealing mandatory platform or processing fees only at the final step) violates consumer law.',
+    whyItMatters: 'Some consumer-protection regimes restrict drip pricing or require mandatory charges to be shown prominently before purchase. Make totals clear and verify the pricing rules that apply to each market.',
     claudePrompt: 'Display total all-in pricing upfront on pricing cards, including billing cadence and any applicable taxes or usage tiers.'
   },
   {
     index: 11,
     title: 'No fake reviews',
     pillar: 'Honest UX & Claims',
-    whyItMatters: 'Fabricated testimonials, AI-generated avatars claiming to be customers, or invented star ratings trigger heavy FTC fines.',
+    whyItMatters: 'Fabricated testimonials, undisclosed synthetic endorsements, and invented ratings can violate advertising and consumer-protection rules. Requirements and enforcement vary by jurisdiction; use substantiated, clearly disclosed endorsements.',
     claudePrompt: 'Remove all fabricated customer quotes, fake company logos, and hallucinated review counts from landing pages.'
   },
   {
     index: 12,
     title: 'No unsupported claims',
     pillar: 'Honest UX & Claims',
-    whyItMatters: 'Absolute medical, financial, or security guarantees without empirical proof create legal exposure.',
+    whyItMatters: 'Unsubstantiated medical, financial, or security guarantees can mislead users and may breach advertising or sector-specific rules. Substantiate claims and add qualifications required for the relevant product and market.',
     claudePrompt: 'Replace unverified superlatives ("100% unhackable", "Guaranteed ROI") with factual, measurable architectural descriptions.'
   },
   {
     index: 13,
     title: 'Add alt text',
     pillar: 'Accessibility (WCAG)',
-    whyItMatters: 'Screen readers rely on descriptive `alt` attributes; missing alt text is the #1 ADA / EAA web accessibility violation.',
+    whyItMatters: 'Accessible image alternatives are required by WCAG and many accessibility laws where they apply. Provide meaningful text for informative images and hide purely decorative images from assistive technology.',
     claudePrompt: 'Add descriptive, context-accurate `alt` attributes to every informative `<img>` and `aria-hidden="true"` to purely decorative SVGs.'
   },
   {
@@ -500,35 +500,35 @@ export const COMPLIANCE_CHECKS: ComplianceCheck[] = [
     index: 16,
     title: 'Business details',
     pillar: 'Legal Policies',
-    whyItMatters: 'EU/UK e-commerce directives require clear legal entity name, contact email, and registered address in the footer or imprint.',
+    whyItMatters: 'For businesses or transactions covered by EU/UK e-commerce rules, required trader identity and contact details must be made available. Check the applicable disclosure rules and required fields for each market.',
     claudePrompt: 'Add a clean company contact and legal imprint block in the footer with support email and entity details.'
   },
   {
     index: 17,
     title: 'Age consent for kids',
     pillar: 'Privacy & Consent',
-    whyItMatters: 'COPPA and GDPR-K strictly regulate data collection from users under 13 (or 16) without verifiable parental consent.',
+    whyItMatters: 'Children’s privacy and age-assurance obligations vary by jurisdiction, age, service, and data use. Identify applicable rules and safeguards before collecting data from minors; thresholds and parental-consent duties differ.',
     claudePrompt: 'Add age-gate verification or explicit minimum-age requirements in signup flows and Terms of Service.'
   },
   {
     index: 18,
     title: 'Unsubscribe link',
     pillar: 'Privacy & Consent',
-    whyItMatters: 'CAN-SPAM and GDPR require a one-click unsubscribe mechanism in every commercial or marketing email.',
+    whyItMatters: 'Marketing-email opt-out duties depend on the recipient’s jurisdiction and message type. Provide the unsubscribe mechanisms and processing times required by the laws that apply to your mailing list.',
     claudePrompt: 'Include a one-click `List-Unsubscribe` header and visible footer unsubscribe link in all transactional/marketing email templates.'
   },
   {
     index: 19,
     title: 'License stock images',
     pillar: 'Honest UX & Claims',
-    whyItMatters: 'Hotlinking unverified images or scraping copyrighted photography exposes repositories to DMCA takedowns and statutory damages.',
+    whyItMatters: 'Using photos without permission can lead to infringement claims or takedown requests. Licensing, exceptions, and remedies vary by jurisdiction; use assets with verifiable usage rights.',
     claudePrompt: 'Replace any unverified external image URLs with properly licensed local assets, SVG illustrations, or generated artwork.'
   },
   {
     index: 20,
     title: 'Data deletion option',
     pillar: 'Privacy & Consent',
-    whyItMatters: 'Right to Erasure (GDPR Art. 17 / CCPA) and Apple App Store rules require a self-serve account & data deletion flow.',
+    whyItMatters: 'Some privacy laws or platform policies grant deletion rights or require an accessible deletion path. Applicability, exceptions, and timing vary; map the data and rules relevant to your service.',
     claudePrompt: 'Implement a self-serve "Delete Account & Erase Data" action in user settings with clear confirmation.'
   }
 ];
