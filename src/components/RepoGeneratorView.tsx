@@ -8,10 +8,10 @@ import {
   FileText,
   FolderGit2,
   GitBranch,
-  Globe,
-  Terminal
+  Globe
 } from 'lucide-react';
-import { ColorPalette, EXTRACTED_PALETTES } from '../data/palettes';
+import { ColorPalette, EXTRACTED_PALETTES, PaletteColor } from '../data/palettes';
+import { downloadBlob } from '../utils/browser';
 import {
   GeneratedRepoFile,
   RepoFileId,
@@ -20,7 +20,8 @@ import {
 
 interface RepoGeneratorViewProps {
   activePalette: ColorPalette;
-  onCopyText: (text: string, label: string) => void;
+  activeColors: PaletteColor[];
+  onCopyText: (text: string, label: string) => void | Promise<boolean>;
 }
 
 const RECOMMENDED_REPO_NAME = 'chromakit';
@@ -29,22 +30,25 @@ const RECOMMENDED_REPO_DESCRIPTION =
 
 export const RepoGeneratorView: React.FC<RepoGeneratorViewProps> = ({
   activePalette,
+  activeColors,
   onCopyText
 }) => {
   const [scope, setScope] = useState<'all' | 'active'>('all');
   const [selectedFileId, setSelectedFileId] = useState<RepoFileId>('SKILL.md');
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [downloadError, setDownloadError] = useState<string | null>(null);
 
   const files = useMemo(
-    () => generateRepoFiles(activePalette, scope),
-    [activePalette, scope]
+    () => generateRepoFiles(activePalette, scope, activeColors),
+    [activePalette, activeColors, scope]
   );
 
   const currentFile: GeneratedRepoFile =
     files.find((f) => f.id === selectedFileId) ?? files[0];
 
-  const handleCopyFile = (file: GeneratedRepoFile) => {
-    onCopyText(file.content, file.filename);
+  const handleCopyFile = async (file: GeneratedRepoFile) => {
+    const copied = await onCopyText(file.content, file.filename);
+    if (copied === false) return;
     setCopiedId(file.id);
     window.setTimeout(() => setCopiedId(null), 1400);
   };
@@ -57,15 +61,12 @@ export const RepoGeneratorView: React.FC<RepoGeneratorViewProps> = ({
       html: 'text/html;charset=utf-8',
       bash: 'text/x-shellscript;charset=utf-8'
     };
-    const blob = new Blob([file.content], { type: mimeMap[file.language] });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = file.filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    try {
+      downloadBlob(new Blob([file.content], { type: mimeMap[file.language] }), file.filename);
+      setDownloadError(null);
+    } catch {
+      setDownloadError(`Could not download ${file.filename}. Please try again.`);
+    }
   };
 
   const renderIcon = (id: RepoFileId) => {
@@ -202,6 +203,7 @@ export const RepoGeneratorView: React.FC<RepoGeneratorViewProps> = ({
 
         {/* Right Code Viewer */}
         <div className="lg:col-span-8 rounded-xl border border-[#F4F1EA]/10 bg-[#16161A] overflow-hidden">
+          {downloadError && <p role="status" className="px-4 py-2 text-xs text-red-300">{downloadError}</p>}
           <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3.5 border-b border-[#F4F1EA]/10 bg-[#0E0E10]">
             <div className="flex items-center gap-2.5">
               {renderIcon(currentFile.id)}

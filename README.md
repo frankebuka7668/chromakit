@@ -17,6 +17,27 @@ Full-page desktop screenshots (1440 px wide) are checked into [`screenshots/`](s
 
 ![ChromaKit showcase gallery](screenshots/gallery.png)
 
+## AI agent instruction discovery
+
+`SKILL.md` is the canonical source for shared design instructions. Run `npm run sync-rules` after editing it to regenerate the maintained agent files. Discovery varies by tool; ChromaKit does not claim that every agent automatically reads every file.
+
+| File | Intended use / discovery |
+| --- | --- |
+| `AGENTS.md` | Generic repository guidance for agents that support this convention. |
+| `.agents/skills/chromakit/SKILL.md` | Reusable skill file for agents that load skills from `.agents/skills/`. |
+| `CLAUDE.md` | Claude Code project instructions. |
+| `.cursor/rules/chromakit.mdc` | Cursor project rule with MDC frontmatter. |
+| `.cursorrules` | Legacy Cursor rules compatibility; kept synchronized. |
+| `.devin/README.md` | Manual Devin reference only; no automatic discovery is claimed. |
+
+These files are generated from the same skill content; existing Claude and Cursor files remain supported.
+
+The five public HTML showcases take their palette mapping from `src/data/showcasePages.ts` and their colors from `src/data/palettes.ts`. After changing a canonical palette or its page mapping, run `npm run sync-showcases`; run `npm run check-generated` to verify both showcase and agent-rule outputs.
+
+## Local validation
+
+Run `npm run build`, `npm run typecheck` (strict TypeScript), `npm run lint` (source hygiene checks), `npm test`, and `npm run check-generated` before publishing changes.
+
 ---
 
 ## Included 5 Showcase Web Pages

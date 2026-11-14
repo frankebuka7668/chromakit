@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import {
-  Check,
   CheckSquare,
   Copy,
-  Layers,
   ShieldCheck,
   Sparkles,
   Square

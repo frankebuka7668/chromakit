@@ -2,6 +2,7 @@ import {
   ColorPalette,
   EXTRACTED_PALETTES,
   getContrastRatio,
+  getPreciseContrastRatio,
   getReadableTextColor,
   getWcagRating
 } from '../data/palettes';
@@ -10,12 +11,17 @@ import {
   COMPLIANCE_CHECKS,
   UNSLOP_RULES
 } from '../data/guides';
+import { SHOWCASE_PAGES } from '../data/showcasePages';
 
 export type RepoFileId =
   | 'README.md'
   | 'SKILL.md'
   | 'CLAUDE.md'
   | '.cursorrules'
+  | 'AGENTS.md'
+  | '.agents/skills/chromakit/SKILL.md'
+  | '.cursor/rules/chromakit.mdc'
+  | '.devin/README.md'
   | 'tokens.json'
   | 'tailwind-v4-theme.css'
   | '/pages/01-leica-mono-hardware.html'
@@ -36,10 +42,11 @@ function buildStandalonePageHtml(
   pageNumber: string,
   pageTitle: string,
   paletteId: string,
-  extraBodyMarkup: string
+  extraBodyMarkup: string,
+  paletteOverride?: ColorPalette
 ): string {
   const pal =
-    EXTRACTED_PALETTES.find((p) => p.id === paletteId) ?? EXTRACTED_PALETTES[0];
+    paletteOverride ?? EXTRACTED_PALETTES.find((p) => p.id === paletteId) ?? EXTRACTED_PALETTES[0];
   const bg = pal.colors.find((c) => c.role === 'background') ?? pal.colors[0];
   const surf = pal.colors.find((c) => c.role === 'surface') ?? pal.colors[1];
   const act = pal.colors.find((c) => c.role === 'action') ?? pal.colors[2];
@@ -170,75 +177,95 @@ function buildStandalonePageHtml(
 
 export function generateRepoFiles(
   activePalette: ColorPalette,
-  scope: 'all' | 'active'
+  scope: 'all' | 'active',
+  activeColors: ColorPalette['colors'] = activePalette.colors
 ): GeneratedRepoFile[] {
-  const palettes = scope === 'all' ? EXTRACTED_PALETTES : [activePalette];
+  // Apply user edits to cloned objects; never mutate the canonical palette catalog.
+  const exportActivePalette: ColorPalette = {
+    ...activePalette,
+    colors: activeColors.map((color) => ({ ...color }))
+  };
+  const palettes = (scope === 'all' ? EXTRACTED_PALETTES : [activePalette]).map(
+    (palette) => palette.id === activePalette.id ? exportActivePalette : palette
+  );
+  const pagePalettes = new Map(palettes.map((palette) => [palette.id, palette]));
 
-  const bg = activePalette.colors.find((c) => c.role === 'background') ?? activePalette.colors[0];
-  const surface = activePalette.colors.find((c) => c.role === 'surface') ?? activePalette.colors[1];
-  const action = activePalette.colors.find((c) => c.role === 'action') ?? activePalette.colors[2];
-  const rare = activePalette.colors.find((c) => c.role === 'rare-accent');
+  const bg = exportActivePalette.colors.find((c) => c.role === 'background') ?? exportActivePalette.colors[0];
+  const surface = exportActivePalette.colors.find((c) => c.role === 'surface') ?? exportActivePalette.colors[1];
+  const action = exportActivePalette.colors.find((c) => c.role === 'action') ?? exportActivePalette.colors[2];
+  const rare = exportActivePalette.colors.find((c) => c.role === 'rare-accent');
 
   // 5 Standalone Showcase Web Pages (100% Free & Open-Source)
   const page1Html = buildStandalonePageHtml(
     '01',
     'Leica & Mono Optical Hardware Flagship',
-    'leica-look-closer',
+    SHOWCASE_PAGES[0].defaultPaletteId,
     `<div class="mono" style="font-size: 0.75rem;">M11-P RANGEFINDER · 60MP BSI CMOS</div>
      <h2 style="margin-top: 1rem; font-size: 1.75rem;">Summilux-M 35mm f/1.4 ASPH</h2>
      <p style="margin-top: 0.75rem; font-size: 0.875rem; opacity: 0.85;">"Ice blue and midnight ink: clean, but a little cold. Add vermilion—now it feels expensive."</p>
-     <div class="mono" style="margin-top: 2rem; font-size: 1.25rem; font-weight: 700;">FREE · MIT OPEN SOURCE</div>`
+     <div class="mono" style="margin-top: 2rem; font-size: 1.25rem; font-weight: 700;">FREE · MIT OPEN SOURCE</div>`,
+    pagePalettes.get(SHOWCASE_PAGES[0].defaultPaletteId)
   );
 
   const page2Html = buildStandalonePageHtml(
     '02',
     'Guardbase AI Security & ASCII Cloud',
-    'guardbase-security',
+    SHOWCASE_PAGES[1].defaultPaletteId,
     `<div class="mono" style="font-size: 0.75rem;">ZERO-TRUST AGENT FIREWALL</div>
      <h2 style="margin-top: 1rem; font-size: 1.75rem;">99.989% Threat Interception</h2>
-     <pre class="mono" style="margin-top: 1rem; font-size: 0.7rem; color: #5482FF;">
+     <pre class="mono" style="margin-top: 1rem; font-size: 0.7rem; color: var(--action-10);">
         /\\      /\\
        /**\\    /##\\
       /****\\  /####\\
      /******\\/######\\
      </pre>
-     <div class="mono" style="margin-top: 1.5rem; font-size: 0.8rem;">$ curl -fsSL guardbase.sh/install | sh</div>`
+     <div class="mono" style="margin-top: 1.5rem; font-size: 0.8rem;">$ curl -fsSL guardbase.sh/install | sh</div>`,
+    pagePalettes.get(SHOWCASE_PAGES[1].defaultPaletteId)
   );
 
   const page3Html = buildStandalonePageHtml(
     '03',
     'Motto M-01 Urban Electric Cruiser',
-    'motto-almond-petrol-violet',
+    SHOWCASE_PAGES[2].defaultPaletteId,
     `<div class="mono" style="font-size: 0.75rem;">TWIN-CELL URBAN MOBILITY</div>
      <h2 style="margin-top: 1rem; font-size: 1.75rem;">110 km Range · 70 km/h Top Speed</h2>
      <p style="margin-top: 0.75rem; font-size: 0.875rem; opacity: 0.85;">"Almond cream and petrol teal looks clean right? But add a little electric violet—now look where your eyes go."</p>
-     <div class="mono" style="margin-top: 2rem; font-size: 1.25rem; font-weight: 700;">FREE · MIT OPEN SOURCE</div>`
+     <div class="mono" style="margin-top: 2rem; font-size: 1.25rem; font-weight: 700;">FREE · MIT OPEN SOURCE</div>`,
+    pagePalettes.get(SHOWCASE_PAGES[2].defaultPaletteId)
   );
 
   const page4Html = buildStandalonePageHtml(
     '04',
     'Olipop & Zest Botanical Beverage Storefront',
-    'olipop-sip-happy',
+    SHOWCASE_PAGES[3].defaultPaletteId,
     `<div class="mono" style="font-size: 0.75rem;">9G PREBIOTIC FIBER · 2G SUGAR</div>
      <h2 style="margin-top: 1rem; font-size: 1.75rem;">12-Can Custom Variety Pack</h2>
      <p style="margin-top: 0.75rem; font-size: 0.875rem; opacity: 0.85;">"Lemon yellow and cobalt blue looks fun. Add a little hot pink—now the product jumps off the page."</p>
-     <div class="mono" style="margin-top: 2rem; font-size: 1.25rem; font-weight: 700;">FREE · MIT OPEN SOURCE</div>`
+     <div class="mono" style="margin-top: 2rem; font-size: 1.25rem; font-weight: 700;">FREE · MIT OPEN SOURCE</div>`,
+    pagePalettes.get(SHOWCASE_PAGES[3].defaultPaletteId)
   );
 
   const page5Html = buildStandalonePageHtml(
     '05',
     'Kontour & Arca Architectural Lighting Studio',
-    'kontour-system',
+    SHOWCASE_PAGES[4].defaultPaletteId,
     `<div class="mono" style="font-size: 0.75rem;">LUMINAIRE NO. 04 · 2700K WARMTH</div>
      <h2 style="margin-top: 1rem; font-size: 1.75rem;">01. Spatial Luminaires &amp; Systems</h2>
      <p style="margin-top: 0.75rem; font-size: 0.875rem; opacity: 0.85;">"Jet black and soft white already look premium, but add flame orange and now the whole thing is bold."</p>
-     <div class="mono" style="margin-top: 2rem; font-size: 1.25rem; font-weight: 700;">FREE · MIT OPEN SOURCE</div>`
+     <div class="mono" style="margin-top: 2rem; font-size: 1.25rem; font-weight: 700;">FREE · MIT OPEN SOURCE</div>`,
+    pagePalettes.get(SHOWCASE_PAGES[4].defaultPaletteId)
   );
 
   // 1. README.md
   const readmeContent = `# ChromaKit — Curated Color Combinations, 5 Showcase Pages & AI Agent Skill
 
 > Machine-readable color combinations, 5 production web page templates, 60-30-10 role allocation rules, UI unslop directives, and background recipes built for **human developers** and **AI coding agents** (Claude Code, Cursor, Windsurf, AI Studio).
+
+---
+
+## AI agent instruction discovery
+
+SKILL.md is the canonical source. Run npm run sync-rules after editing it. Discovery varies by tool; automatic discovery is not claimed for every file. AGENTS.md targets agents supporting that convention; .agents/skills/chromakit/SKILL.md is a reusable skill; CLAUDE.md and .cursor/rules/chromakit.mdc target Claude Code and Cursor; .cursorrules is retained for legacy compatibility. .devin/README.md is a manual reference only.
 
 ---
 
@@ -289,7 +316,7 @@ ${palettes
     const pRare = p.colors.find((c) => c.role === 'rare-accent');
     return `### ${idx + 1}. ${p.name} (\`${p.id}\`) — *${p.category}*
 - **60% Background**: ${pBg.name} (\`${pBg.hex}\`)
-- **30% Surface / Text**: ${pSurf.name} (\`${pSurf.hex}\`) — Contrast: \`${getContrastRatio(pBg.hex, pSurf.hex)}:1 (${getWcagRating(getContrastRatio(pBg.hex, pSurf.hex))})\`
+- **30% Surface / Text**: ${pSurf.name} (\`${pSurf.hex}\`) — Contrast: \`${getContrastRatio(pBg.hex, pSurf.hex)}:1 (${getWcagRating(getPreciseContrastRatio(pBg.hex, pSurf.hex))})\`
 - **10% Action Accent**: ${pAct.name} (\`${pAct.hex}\`)
 ${pRare ? `- **Rare Accent**: ${pRare.name} (\`${pRare.hex}\`)\n` : ''}- **Why It Works**: *"${p.storyQuote}"* (${p.creator})`;
   })
@@ -406,8 +433,11 @@ description: >-
 ${skillBody}`;
 
   const syncedRulesContent = `<!-- AUTO-GENERATED from SKILL.md. Edit SKILL.md, then run \`npm run sync-rules\`. -->\n\n${skillBody}`;
+  const cursorMdcContent = `---\ndescription: ChromaKit colour roles, contrast, and UI design rules\nglobs: **/*\nalwaysApply: true\n---\n\n${skillBody}`;
+  const agentSkillContent = `---\nname: chromakit\ndescription: ChromaKit palette, contrast, and interface design guidance. Use when building or editing UI.\n---\n\n${skillBody}`;
+  const devinReferenceContent = `# Devin repository guidance\n\nThis generated reference mirrors the shared ChromaKit instructions in [AGENTS.md](../AGENTS.md) and [SKILL.md](../SKILL.md). Keep both in sync with \`npm run sync-rules\`. This file is provided for explicit/manual use; it does not claim automatic discovery by Devin.\n`;
 
-  // 3. CLAUDE.md & 4. .cursorrules (synced from SKILL.md body)
+  // Claude, Cursor, and generic agent instruction files remain synchronized to the skill.
   const claudeContent = syncedRulesContent;
   const cursorRulesContent = syncedRulesContent;
 
@@ -420,13 +450,11 @@ ${skillBody}`;
       activePaletteId: activePalette.id,
       totalPalettes: palettes.length
     },
-    showcasePages: [
-      { page: '01', file: '/pages/01-leica-mono-hardware.html', paletteId: 'leica-look-closer' },
-      { page: '02', file: '/pages/02-guardbase-ai-security.html', paletteId: 'guardbase-security' },
-      { page: '03', file: '/pages/03-motto-electric-mobility.html', paletteId: 'motto-almond-petrol-violet' },
-      { page: '04', file: '/pages/04-olipop-zest-beverage.html', paletteId: 'olipop-sip-happy' },
-      { page: '05', file: '/pages/05-kontour-arca-studio.html', paletteId: 'kontour-system' }
-    ],
+    showcasePages: SHOWCASE_PAGES.map((page) => ({
+      page: page.number,
+      file: page.staticUrl,
+      paletteId: page.defaultPaletteId
+    })),
     palettes: Object.fromEntries(
       palettes.map((p) => [
         p.id,
@@ -502,8 +530,36 @@ ${palettes
       id: '.cursorrules',
       filename: '.cursorrules',
       language: 'markdown',
-      description: 'Cursor IDE system rules for automatic color role discipline and anti-slop enforcement.',
+      description: 'Legacy Cursor rules file, kept synchronized for existing repositories.',
       content: cursorRulesContent
+    },
+    {
+      id: 'AGENTS.md',
+      filename: 'AGENTS.md',
+      language: 'markdown',
+      description: 'Shared repository instructions for coding agents that discover AGENTS.md.',
+      content: syncedRulesContent
+    },
+    {
+      id: '.agents/skills/chromakit/SKILL.md',
+      filename: '.agents/skills/chromakit/SKILL.md',
+      language: 'markdown',
+      description: 'Reusable ChromaKit agent skill with standard skill frontmatter.',
+      content: agentSkillContent
+    },
+    {
+      id: '.cursor/rules/chromakit.mdc',
+      filename: '.cursor/rules/chromakit.mdc',
+      language: 'markdown',
+      description: 'Cursor project rule in MDC format, generated from the shared ChromaKit skill.',
+      content: cursorMdcContent
+    },
+    {
+      id: '.devin/README.md',
+      filename: '.devin/README.md',
+      language: 'markdown',
+      description: 'Manual Devin reference; automatic repository discovery is not assumed.',
+      content: devinReferenceContent
     },
     {
       id: 'tokens.json',

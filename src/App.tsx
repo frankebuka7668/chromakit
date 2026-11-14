@@ -1,15 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import {
-  ArrowRight,
   Check,
   Code2,
   Copy,
   Download,
   Film,
-  GitBranch,
-  Layers,
   Search,
-  Sparkles,
   Terminal
 } from 'lucide-react';
 import {
@@ -18,6 +14,7 @@ import {
   PaletteCategory,
   PaletteColor,
   getContrastRatio,
+  getPreciseContrastRatio,
   getWcagRating
 } from './data/palettes';
 import { LiveMockupStage } from './components/LiveMockupStage';
@@ -25,6 +22,7 @@ import { DesignGuidesView } from './components/DesignGuidesView';
 import { RepoGeneratorView } from './components/RepoGeneratorView';
 import { ShowcasePagesView } from './components/ShowcasePagesView';
 import { RepoFileId, generateRepoFiles } from './utils/repoGenerator';
+import { copyTextToClipboard, downloadBlob } from './utils/browser';
 
 type ActiveSection = 'showcase' | 'palettes' | 'guides' | 'repo' | 'sources';
 
@@ -123,31 +121,26 @@ export default function App() {
     }, 1800);
   };
 
-  const handleCopyText = (text: string, label: string) => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).catch(() => {});
-    }
-    triggerToast(`Copied ${label}`);
+  const handleCopyText = async (text: string, label: string): Promise<boolean> => {
+    const copied = await copyTextToClipboard(text);
+    triggerToast(copied ? `Copied ${label}` : `Could not copy ${label}. Please copy it manually.`);
+    return copied;
   };
 
   const handleDownloadRepoFile = (fileId: RepoFileId) => {
-    const files = generateRepoFiles(activePalette, 'all');
+    const files = generateRepoFiles(activePalette, 'all', activeColors);
     const target = files.find((f) => f.id === fileId);
     if (!target) return;
-    const blob = new Blob([target.content], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = target.filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    triggerToast(`Downloaded ${target.filename}`);
+    try {
+      downloadBlob(new Blob([target.content], { type: 'text/plain;charset=utf-8' }), target.filename);
+      triggerToast(`Downloaded ${target.filename}`);
+    } catch {
+      triggerToast(`Could not download ${target.filename}. Please try again.`);
+    }
   };
 
   const handleCopyRepoFile = (fileId: RepoFileId) => {
-    const files = generateRepoFiles(activePalette, 'all');
+    const files = generateRepoFiles(activePalette, 'all', activeColors);
     const target = files.find((f) => f.id === fileId);
     if (!target) return;
     handleCopyText(target.content, target.filename);
@@ -690,6 +683,7 @@ export default function App() {
                   const act = palette.colors.find((c) => c.role === 'action') ?? palette.colors[2];
                   const rare = palette.colors.find((c) => c.role === 'rare-accent');
                   const contrast = getContrastRatio(bg.hex, surf.hex);
+                  const preciseContrast = getPreciseContrastRatio(bg.hex, surf.hex);
 
                   return (
                     <div
@@ -766,7 +760,7 @@ export default function App() {
                               {palette.creator} · {palette.category}
                             </span>
                             <span>
-                              {contrast}:1 ({getWcagRating(contrast)})
+                              {contrast}:1 ({getWcagRating(preciseContrast)})
                             </span>
                           </div>
 
@@ -829,6 +823,7 @@ export default function App() {
         {activeSection === 'repo' && (
           <RepoGeneratorView
             activePalette={activePalette}
+            activeColors={activeColors}
             onCopyText={handleCopyText}
           />
         )}

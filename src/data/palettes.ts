@@ -1053,17 +1053,30 @@ export function getRelativeLuminance(hex: string): number {
   return 0.2126 * R + 0.7152 * G + 0.0722 * B;
 }
 
-export function getContrastRatio(hex1: string, hex2: string): number {
+export function getPreciseContrastRatio(hex1: string, hex2: string): number {
   const lum1 = getRelativeLuminance(hex1);
   const lum2 = getRelativeLuminance(hex2);
   const brightest = Math.max(lum1, lum2);
   const darkest = Math.min(lum1, lum2);
-  return Number(((brightest + 0.05) / (darkest + 0.05)).toFixed(2));
+  return (brightest + 0.05) / (darkest + 0.05);
+}
+
+export function getContrastRatio(hex1: string, hex2: string): number {
+  return Number(getPreciseContrastRatio(hex1, hex2).toFixed(2));
 }
 
 export function getReadableTextColor(bgHex: string): '#0E0E10' | '#F4F1EA' {
-  const lum = getRelativeLuminance(bgHex);
-  return lum > 0.36 ? '#0E0E10' : '#F4F1EA';
+  const darkText = '#0E0E10';
+  const lightText = '#F4F1EA';
+  return getPreciseContrastRatio(bgHex, darkText) >= getPreciseContrastRatio(bgHex, lightText)
+    ? darkText
+    : lightText;
+}
+
+export function getContrastWarning(ratio: number, threshold = 4.5): string | null {
+  return ratio < threshold
+    ? `Contrast ${ratio.toFixed(3)}:1 is below the ${threshold}:1 WCAG target.`
+    : null;
 }
 
 export function getWcagRating(ratio: number): 'AAA' | 'AA' | 'AA Large' | 'Decorative' {
