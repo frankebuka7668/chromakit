@@ -1021,8 +1021,12 @@ export const EXTRACTED_PALETTES: ColorPalette[] = [
 ];
 
 // --- WCAG Contrast & Color Math Utilities ---
+export function isValidHexColor(hex: string): boolean {
+  return /^#(?:[\da-fA-F]{3}|[\da-fA-F]{6})$/.test(hex);
+}
+
 export function hexToRgb(hex: string): { r: number; g: number; b: number } {
-  if (!/^#(?:[\da-fA-F]{3}|[\da-fA-F]{6})$/.test(hex)) {
+  if (!isValidHexColor(hex)) {
     throw new TypeError(`Invalid hexadecimal colour: ${hex}`);
   }
   const cleaned = hex.slice(1);
