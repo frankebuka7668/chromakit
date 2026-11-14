@@ -1022,23 +1022,13 @@ export const EXTRACTED_PALETTES: ColorPalette[] = [
 
 // --- WCAG Contrast & Color Math Utilities ---
 export function hexToRgb(hex: string): { r: number; g: number; b: number } {
-  const cleaned = hex.replace('#', '').trim();
-  const full =
-    cleaned.length === 3
-      ? cleaned
-          .split('')
-          .map((c) => c + c)
-          .join('')
-      : cleaned;
-  const num = parseInt(full, 16);
-  if (Number.isNaN(num)) {
-    return { r: 0, g: 0, b: 0 };
+  if (!/^#(?:[\da-fA-F]{3}|[\da-fA-F]{6})$/.test(hex)) {
+    throw new TypeError(`Invalid hexadecimal colour: ${hex}`);
   }
-  return {
-    r: (num >> 16) & 255,
-    g: (num >> 8) & 255,
-    b: num & 255
-  };
+  const cleaned = hex.slice(1);
+  const full = cleaned.length === 3 ? [...cleaned].map((c) => c + c).join('') : cleaned;
+  const num = Number.parseInt(full, 16);
+  return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 };
 }
 
 export function getRelativeLuminance(hex: string): number {

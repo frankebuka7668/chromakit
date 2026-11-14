@@ -23,9 +23,15 @@ for (const [filename, paletteId] of pages) {
   const swatches = `<div class="palette-row">${palette.colors.map((color) => `<div class="swatch"><span class="swatch-chip" style="background:${color.hex}" aria-hidden="true"></span><span class="swatch-copy"><strong>${color.name}</strong><small>${color.hex}</small></span></div>`).join('')}</div>`;
   const filePath = path.join(root, 'public/pages', filename);
   const original = fs.readFileSync(filePath, 'utf8');
+  const themePattern = /<meta name="theme-color" content="#[0-9A-Fa-f]{6}"\s*\/>/;
+  const rootPattern = /:root\{--bg:[^}]*\}/;
+  const swatchPattern = /<div class="palette-row">[\s\S]*?(?=<\/section>)/;
+  if (!themePattern.test(original) || !rootPattern.test(original) || !swatchPattern.test(original)) {
+    throw new Error(`${filename} is missing a required theme-color, :root palette variable, or palette-row element`);
+  }
   const updated = original
-    .replace(/<meta name="theme-color" content="#[0-9A-Fa-f]{6}"\s*\/>/, `<meta name="theme-color" content="${background.hex}" />`)
-    .replace(/:root\{--bg:[^}]*\}/, colors)
+    .replace(themePattern, `<meta name="theme-color" content="${background.hex}" />`)
+    .replace(rootPattern, colors)
     .replace(/\n  <style>:root\{--bg:[^<]*<\/style>/, '')
     .replace(/<div class="palette-row">[\s\S]*?(?=<\/section>)/, swatches);
   if (checkOnly) {
