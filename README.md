@@ -70,12 +70,12 @@ The curated, growing catalog of color systems below was compiled from public col
 by four TikTok creators: [@vixdesignz](https://www.tiktok.com/@vixdesignz),
 [@toolandtea](https://www.tiktok.com/@toolandtea), [@bymarcoperez](https://www.tiktok.com/@bymarcoperez),
 and [@asongstudio_](https://www.tiktok.com/@asongstudio_). Hex values, role allocations,
-and the "why it works" quotes are credited to them individually in each entry
-below. This repository's code, documentation structure, showcase pages, and
+and the “Why It Works” paraphrased summaries are credited to the creators
+by handle in each entry below. This repository's code, documentation structure, showcase pages, and
 AI agent skill files are original and licensed under MIT (see LICENSE);
 the cited palette curation itself is not claimed as original work.
 
-> **Attribution verification needed:** I searched for the attributed wording but could not locate the original TikTok posts or independently confirm any of the following “Why It Works” lines as exact quotations. Each is flagged below for source review; please verify against the original post or mark it as a paraphrase before publication.
+> **Attribution note:** The “Why It Works” lines below are paraphrased summaries of each creator’s stated idea, credited to them by handle. They are not verbatim quotations.
 
 ---
 
@@ -86,150 +86,150 @@ the cited palette curation itself is not claimed as original work.
 - **30% Surface / Text**: Bone (`#F4F1EA`) — Contrast: `17.1:1 (AAA)`
 - **10% Action Accent**: Flame (`#FF4D1F`)
 - **Rare Accent**: Volt (`#D4FF3A`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Decide the jobs before the hues. Spend the action colour once—put it on everything and it stops meaning anything."* (@vixdesignz)
+- **Why It Works**: Decide the jobs before the hues. Spend the action colour once—put it on everything and it stops meaning anything. (concept via @vixdesignz)
 
 ### 2. Cairn Brand System (`cairn-story-system`) — *Industry Systems*
 - **60% Background**: Charcoal (`#22252B`)
 - **30% Surface / Text**: Quarry Cream (`#F3EFE6`) — Contrast: `13.38:1 (AAA)`
 - **10% Action Accent**: Amber (`#FFB020`)
 - **Rare Accent**: Deep Teal (`#1F5D50`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Amber is the signal glowing in low light; Charcoal is the foundation; Deep Teal is the resolved state; Quarry Cream is where the stone comes from."* (@vixdesignz)
+- **Why It Works**: Amber is the signal glowing in low light; Charcoal is the foundation; Deep Teal is the resolved state; Quarry Cream is where the stone comes from. (concept via @vixdesignz)
 
 ### 3. Athletic Midnight & Lime (`mark-tennis-club`) — *Consumer & Playful*
 - **60% Background**: Midnight Navy (`#132C48`)
 - **30% Surface / Text**: Cloud White (`#F6F4F0`) — Contrast: `12.9:1 (AAA)`
 - **10% Action Accent**: Electric Lime (`#D8FF00`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Midnight navy and cloud white look clean. Now add electric lime and the whole thing has energy."* (@toolandtea)
+- **Why It Works**: Midnight navy and cloud white look clean. Now add electric lime and the whole thing has energy. (concept via @toolandtea)
 
 ### 4. Kontour Editorial Black & Flame (`kontour-system`) — *Editorial & Luxury*
 - **60% Background**: Jet Black (`#0B0B0B`)
 - **30% Surface / Text**: Soft White (`#F3F3F2`) — Contrast: `17.73:1 (AAA)`
 - **10% Action Accent**: Flame Orange (`#FF4D00`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Jet black and soft white already look premium, but add flame orange and now the whole thing is bold."* (@toolandtea)
+- **Why It Works**: Jet black and soft white already look premium, but add flame orange and now the whole thing is bold. (concept via @toolandtea)
 
 ### 5. Guardbase Paper & Cornflower (`guardbase-security`) — *Tech & SaaS*
 - **60% Background**: Paper White (`#FFFFFF`)
 - **30% Surface / Text**: Ink Black (`#0B0B0B`) — Contrast: `19.68:1 (AAA)`
 - **10% Action Accent**: Cornflower Blue (`#5482FF`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Paper white and ink black is simple and clear. One touch of cornflower blue and some ASCII design—now you know exactly where to click."* (@toolandtea)
+- **Why It Works**: Paper white and ink black is simple and clear. One touch of cornflower blue and some ASCII design—now you know exactly where to click. (concept via @toolandtea)
 
 ### 6. Olipop Lemon, Cobalt & Hot Pink (`olipop-sip-happy`) — *Consumer & Playful*
 - **60% Background**: Lemon Yellow (`#F4E452`)
 - **30% Surface / Text**: Cobalt Blue (`#0D32B8`) — Contrast: `7.42:1 (AAA)`
 - **10% Action Accent**: Hot Pink (`#FF318C`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Lemon yellow and cobalt blue looks fun. Add a little hot pink—now the product jumps off the page."* (@bymarcoperez)
+- **Why It Works**: Lemon yellow and cobalt blue looks fun. Add a little hot pink—now the product jumps off the page. (concept via @bymarcoperez)
 
 ### 7. Leica Ice Blue, Ink & Vermilion (`leica-look-closer`) — *Editorial & Luxury*
 - **60% Background**: Ice Blue (`#D5E5F0`)
 - **30% Surface / Text**: Midnight Ink (`#081D2B`) — Contrast: `13.35:1 (AAA)`
 - **10% Action Accent**: Vermilion (`#EE4222`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Ice blue and midnight ink: clean, but a little cold. Add vermilion—now it feels expensive."* (@bymarcoperez)
+- **Why It Works**: Ice blue and midnight ink: clean, but a little cold. Add vermilion—now it feels expensive. (concept via @bymarcoperez)
 
 ### 8. Afterhour Forest, Ivory & Coral (`afterhour-forest-coral`) — *Editorial & Luxury*
 - **60% Background**: Forest Green (`#073B2B`)
 - **30% Surface / Text**: Ivory (`#F7F6EE`) — Contrast: `11.6:1 (AAA)`
 - **10% Action Accent**: Coral (`#FA7C67`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Forest green and ivory: nice and understated. Bring in coral—now the whole design feels warmer."* (@bymarcoperez)
+- **Why It Works**: Forest green and ivory: nice and understated. Bring in coral—now the whole design feels warmer. (concept via @bymarcoperez)
 
 ### 9. Good Company Sky, Cloud & Vermilion (`good-company-sky-vermilion`) — *Tech & SaaS*
 - **60% Background**: Sky Blue (`#0D84FF`)
 - **30% Surface / Text**: Cloud White (`#F2F6FA`) — Contrast: `3.36:1 (AA Large)`
 - **10% Action Accent**: Vermilion (`#E73E18`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Sky blue and cloud white looks clean right? Add a little bit of vermilion—now look where your eyes go."* (@bymarcoperez)
+- **Why It Works**: Sky blue and cloud white looks clean right? Add a little bit of vermilion—now look where your eyes go. (concept via @bymarcoperez)
 
 ### 10. Offscript Red Orange, Snow & Acid Yellow (`offscript-red-acid`) — *Consumer & Playful*
 - **60% Background**: Red Orange (`#F72D07`)
 - **30% Surface / Text**: Snow White (`#FAF6F6`) — Contrast: `3.67:1 (AA Large)`
 - **10% Action Accent**: Acid Yellow (`#D4FF1E`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Red orange and snowy white: nothing wrong with it. Add one touch of acid yellow—now it is something worth stopping for."* (@bymarcoperez)
+- **Why It Works**: Red orange and snowy white: nothing wrong with it. Add one touch of acid yellow—now it is something worth stopping for. (concept via @bymarcoperez)
 
 ### 11. Nightline Sapphire, Cyan & Neon Jade (`nightline-sapphire-jade`) — *Tech & SaaS*
 - **60% Background**: Sapphire Blue (`#06299C`)
 - **30% Surface / Text**: Ocean Cyan (`#00C0FA`) — Contrast: `5.5:1 (AA)`
 - **10% Action Accent**: Neon Jade (`#5BFF62`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Sapphire blue and ocean cyan: you think it is finished. Add a bit of neon jade—now try imagining without it."* (@bymarcoperez)
+- **Why It Works**: Sapphire blue and ocean cyan: you think it is finished. Add a bit of neon jade—now try imagining without it. (concept via @bymarcoperez)
 
 ### 12. Zest Mandarin, Forest & Crest Yellow (`zest-mandarin-forest`) — *Consumer & Playful*
 - **60% Background**: Mandarin Orange (`#F25912`)
 - **30% Surface / Text**: Forest Green (`#0D542E`) — Contrast: `2.67:1 (Decorative)`
 - **10% Action Accent**: Crest Yellow (`#F2DA3A`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Mandarin orange and forest green looks good. Add a little crest yellow—now you know exactly where to click."* (@bymarcoperez)
+- **Why It Works**: Mandarin orange and forest green looks good. Add a little crest yellow—now you know exactly where to click. (concept via @bymarcoperez)
 
 ### 13. Forma Onyx, Electric Indigo & Mint (`forma-onyx-indigo-mint`) — *Editorial & Luxury*
 - **60% Background**: Onyx Black (`#0D0B12`)
 - **30% Surface / Text**: Electric Indigo (`#6B17FA`) — Contrast: `2.91:1 (Decorative)`
 - **10% Action Accent**: Tropical Mint (`#6BFCC4`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Onyx black and electric indigo: a bit forgettable. One touch of tropical mint—now you would recognize it anywhere."* (@bymarcoperez)
+- **Why It Works**: Onyx black and electric indigo: a bit forgettable. One touch of tropical mint—now you would recognize it anywhere. (concept via @bymarcoperez)
 
 ### 14. Prism Teal, Navy & Crimson Pink (`prism-teal-navy-crimson`) — *Tech & SaaS*
 - **60% Background**: Teal Blue (`#D8ECF5`)
 - **30% Surface / Text**: Navy Blue (`#071D42`) — Contrast: `13.64:1 (AAA)`
 - **10% Action Accent**: Crimson Pink (`#F24182`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Teal blue and navy blue: you could leave it here. Add a little bit of crimson pink—suddenly the whole page comes together."* (@bymarcoperez)
+- **Why It Works**: Teal blue and navy blue: you could leave it here. Add a little bit of crimson pink—suddenly the whole page comes together. (concept via @bymarcoperez)
 
 ### 15. Bonbon Sugar Violet, Cream & Cherry (`bonbon-violet-cream-cherry`) — *Consumer & Playful*
 - **60% Background**: Sugar Violet (`#8752DE`)
 - **30% Surface / Text**: Vanilla Cream (`#FAE8CA`) — Contrast: `4.07:1 (AA Large)`
 - **10% Action Accent**: Cherry Red (`#DB1222`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Sugar violet and vanilla cream already feels playful, but add a little bit of cherry red—now it has got personality."* (@bymarcoperez)
+- **Why It Works**: Sugar violet and vanilla cream already feels playful, but add a little bit of cherry red—now it has got personality. (concept via @bymarcoperez)
 
 ### 16. Solar Pool Blue, Dark Cocoa & Solar Yellow (`solar-pool-cocoa-yellow`) — *Editorial & Luxury*
 - **60% Background**: Pool Blue (`#B8E1EB`)
 - **30% Surface / Text**: Dark Cocoa (`#3D1D14`) — Contrast: `10.84:1 (AAA)`
 - **10% Action Accent**: Solar Yellow (`#F2C92E`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Pool blue and dark cocoa looks calm right? Add a touch of solar yellow—now it is impossible to ignore."* (@bymarcoperez)
+- **Why It Works**: Pool blue and dark cocoa looks calm right? Add a touch of solar yellow—now it is impossible to ignore. (concept via @bymarcoperez)
 
 ### 17. Mono Porcelain, Carbon & Ultramarine (`mono-porcelain-carbon-ultramarine`) — *Editorial & Luxury*
 - **60% Background**: Porcelain (`#F4F4F2`)
 - **30% Surface / Text**: Carbon (`#171B1E`) — Contrast: `15.73:1 (AAA)`
 - **10% Action Accent**: Ultramarine (`#1C30F2`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Porcelain and carbon: clean and precise. But add a little bit of ultramarine—now look where your eyes go."* (@bymarcoperez)
+- **Why It Works**: Porcelain and carbon: clean and precise. But add a little bit of ultramarine—now look where your eyes go. (concept via @bymarcoperez)
 
 ### 18. Motto Almond Cream, Petrol Teal & Electric Violet (`motto-almond-petrol-violet`) — *Consumer & Playful*
 - **60% Background**: Almond Cream (`#F3ECC8`)
 - **30% Surface / Text**: Petrol Teal (`#0D5258`) — Contrast: `7.46:1 (AAA)`
 - **10% Action Accent**: Electric Violet (`#A862F7`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Almond cream and petrol teal looks clean right? But add a little electric violet—now look where your eyes go."* (@bymarcoperez)
+- **Why It Works**: Almond cream and petrol teal looks clean right? But add a little electric violet—now look where your eyes go. (concept via @bymarcoperez)
 
 ### 19. Dotto Apricot, Mulberry & Pool Mint (`dotto-apricot-mulberry-mint`) — *Consumer & Playful*
 - **60% Background**: Apricot (`#F7AC6F`)
 - **30% Surface / Text**: Mulberry (`#4F1233`) — Contrast: `7.56:1 (AAA)`
 - **10% Action Accent**: Pool Mint (`#5FF5C4`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Apricot and mulberry already feels playful. Add a touch of pool mint and see how the details pop."* (@bymarcoperez)
+- **Why It Works**: Apricot and mulberry already feels playful. Add a touch of pool mint and see how the details pop. (concept via @bymarcoperez)
 
 ### 20. Arca Salt Grey, Deep Olive & Hibiscus Pink (`arca-salt-olive-hibiscus`) — *Editorial & Luxury*
 - **60% Background**: Salt Grey (`#E6E8E8`)
 - **30% Surface / Text**: Deep Olive (`#213321`) — Contrast: `10.94:1 (AAA)`
 - **10% Action Accent**: Hibiscus Pink (`#F2407A`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"Salt grey and deep olive: you would think it is finished. But add a little bit of hibiscus pink—try picturing the room without it."* (@bymarcoperez)
+- **Why It Works**: Salt grey and deep olive: you would think it is finished. But add a little bit of hibiscus pink—try picturing the room without it. (concept via @bymarcoperez)
 
 ### 21. Veyra Tech Brand System (`veyra-tech-brand`) — *Industry Systems*
 - **60% Background**: Midnight Navy (`#111A3A`)
 - **30% Surface / Text**: Ice Blue (`#DCE4EC`) — Contrast: `13.27:1 (AAA)`
 - **10% Action Accent**: Chartreuse (`#D4FF00`)
 - **Rare Accent**: Electric Blue (`#1F51FF`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"For a tech brand, try Midnight Navy, Ice Blue, Electric Blue, and Chartreuse."* (@asongstudio_)
+- **Why It Works**: For a tech brand, try Midnight Navy, Ice Blue, Electric Blue, and Chartreuse. (concept via @asongstudio_)
 
 ### 22. Little Crumb Cafe & Bakery (`little-crumb-cafe`) — *Industry Systems*
 - **60% Background**: Oat (`#F3E5AB`)
 - **30% Surface / Text**: Toffee Brown (`#4A2511`) — Contrast: `10.62:1 (AAA)`
 - **10% Action Accent**: Strawberry Pink (`#E8A598`)
 - **Rare Accent**: Olive (`#706E2E`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"For a cafe, try Toffee Brown, Oat, Strawberry Pink, and Olive."* (@asongstudio_)
+- **Why It Works**: For a cafe, try Toffee Brown, Oat, Strawberry Pink, and Olive. (concept via @asongstudio_)
 
 ### 23. Atelier Corporate & Law Firm (`atelier-law-firm`) — *Industry Systems*
 - **60% Background**: Deep Teal (`#0D262A`)
 - **30% Surface / Text**: Stone (`#DCD9D0`) — Contrast: `11.21:1 (AAA)`
 - **10% Action Accent**: Burnt Orange (`#C6631B`)
 - **Rare Accent**: Slate Blue (`#6A83A4`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"For a law firm, try Deep Teal, Slate Blue, Stone, and Burnt Orange."* (@asongstudio_)
+- **Why It Works**: For a law firm, try Deep Teal, Slate Blue, Stone, and Burnt Orange. (concept via @asongstudio_)
 
 ### 24. Oriel Botanical Skincare (`oriel-skincare`) — *Industry Systems*
 - **60% Background**: Cream (`#F9F3E3`)
 - **30% Surface / Text**: Terracotta (`#B36A46`) — Contrast: `3.74:1 (AA Large)`
 - **10% Action Accent**: Gold (`#CEA243`)
 - **Rare Accent**: Nude (`#DFBA94`)
-- **Why It Works — UNVERIFIED EXACT QUOTE (check original TikTok post)**: *"For skincare, try Terracotta, Nude, Cream, and Gold."* (@asongstudio_)
+- **Why It Works**: For skincare, try Terracotta, Nude, Cream, and Gold. (concept via @asongstudio_)
 
 ---
 
