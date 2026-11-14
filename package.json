@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "typecheck": "tsc --noEmit",
-    "lint": "node scripts/lint.js",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
     "test": "tsx --test tests/*.test.ts",
     "sync-rules": "node scripts/sync-rules.js",
     "sync-showcases": "tsx scripts/sync-showcase-palettes.ts",
@@ -28,10 +28,14 @@
     "@types/node": "^22.14.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.72.2",
+    "@typescript-eslint/parser": "^8.72.2",
     "autoprefixer": "^10.4.21",
     "esbuild": "^0.28.2",
+    "eslint": "^10.15.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.21.0",
-    "typescript": "^7.0.2"
+    "typescript": "^6.0.3"
   }
 }
